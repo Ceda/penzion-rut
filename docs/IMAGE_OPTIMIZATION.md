@@ -28,16 +28,11 @@ src/
 
 ```astro
 ---
-import { Image } from 'astro:assets';
-import myImage from '../images/homepage/photo.jpg';
+import { Image } from "astro:assets";
+import myImage from "../images/homepage/photo.jpg";
 ---
 
-<Image
-  src={myImage}
-  alt="Popis obrázku"
-  width={250}
-  format="webp"
-/>
+<Image src={myImage} alt="Popis obrázku" width={250} format="webp" />
 ```
 
 ### Responsive images s více velikostmi
@@ -57,24 +52,19 @@ import myImage from '../images/homepage/photo.jpg';
 
 ```astro
 ---
-import { getImage } from 'astro:assets';
-import photo from '../images/photo.jpg';
+import { getImage } from "astro:assets";
+import photo from "../images/photo.jpg";
 
 // Vygeneruj velkou verzi pro lightbox
 const photoLarge = await getImage({
   src: photo,
   width: 1200,
-  format: 'webp'
+  format: "webp",
 });
 ---
 
 <a href={photoLarge.src} class="lightbox">
-  <Image
-    src={photo}
-    alt="Náhled"
-    width={250}
-    format="webp"
-  />
+  <Image src={photo} alt="Náhled" width={250} format="webp" />
 </a>
 ```
 
@@ -86,27 +76,29 @@ const images = [photo1, photo2, photo3];
 
 // Vygeneruj velké verze
 const largeImages = await Promise.all(
-  images.map(img => getImage({ src: img, width: 1200, format: 'webp' }))
+  images.map((img) => getImage({ src: img, width: 1200, format: "webp" }))
 );
 
 const gallery = images.map((src, i) => ({
   src,
-  large: largeImages[i]
+  large: largeImages[i],
 }));
 ---
 
 <div class="gallery">
-  {gallery.map((img) => (
-    <a href={img.large.src} class="lightbox">
-      <Image
-        src={img.src}
-        alt="Fotografie"
-        width={150}
-        widths={[150, 300]}
-        format="webp"
-      />
-    </a>
-  ))}
+  {
+    gallery.map((img) => (
+      <a href={img.large.src} class="lightbox">
+        <Image
+          src={img.src}
+          alt="Fotografie"
+          width={150}
+          widths={[150, 300]}
+          format="webp"
+        />
+      </a>
+    ))
+  }
 </div>
 ```
 

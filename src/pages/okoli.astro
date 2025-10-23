@@ -1,10 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import { getImage } from 'astro:assets';
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
 
 // Import obrázků
-const allImages = import.meta.glob<{ default: ImageMetadata }>('../images/galerie/*.{jpg,JPG}', { eager: true });
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  "../images/galerie/*.{jpg,JPG}",
+  { eager: true }
+);
 
 const getImageByName = (name: string) => {
   const path = `../images/galerie/${name}`;
@@ -12,19 +15,32 @@ const getImageByName = (name: string) => {
 };
 
 // Obrázky pro stránku
-const bezdez = getImageByName('bezdez-0.jpg');
+const bezdez = getImageByName("bezdez-0.jpg");
 
 // Galerie okolí
 const okoliImages = [
-  'bezdez-0.jpg', 'jezero-0.jpg', 'parnik_Hynek-0.jpg', 'plaz-0.jpg',
-  'DSC_4982.jpg', 'okoli-0.jpg', 'DSC_5030.jpg', 'DSC_4804.jpg',
-  'pohled_z_okna-0.jpg', 'DSC_4809.jpg'
-].map(name => getImageByName(name)).filter(Boolean);
+  "bezdez-0.jpg",
+  "jezero-0.jpg",
+  "parnik_Hynek-0.jpg",
+  "plaz-0.jpg",
+  "DSC_4982.jpg",
+  "okoli-0.jpg",
+  "DSC_5030.jpg",
+  "DSC_4804.jpg",
+  "pohled_z_okna-0.jpg",
+  "DSC_4809.jpg",
+]
+  .map((name) => getImageByName(name))
+  .filter(Boolean);
 
-const bezdezLarge = await getImage({ src: bezdez, width: 1200, format: 'webp' });
+const bezdezLarge = await getImage({
+  src: bezdez,
+  width: 1200,
+  format: "webp",
+});
 
 const okoliLarge = await Promise.all(
-  okoliImages.map(img => getImage({ src: img, width: 1200, format: 'webp' }))
+  okoliImages.map((img) => getImage({ src: img, width: 1200, format: "webp" }))
 );
 ---
 
@@ -34,7 +50,9 @@ const okoliLarge = await Promise.all(
   keywords="okolí Máchovo jezero, co dělat Staré Splavy, aktivity Máchovo jezero, vodní sporty, cyklistika, pěší turistika, tenisový kurt, písečná pláž, bazén Staré Splavy"
 >
   <div id="crumbs">
-    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/okoli">Okolí</a>
+    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/okoli"
+      >Okolí</a
+    >
   </div>
 
   <div class="contents">
@@ -55,37 +73,46 @@ const okoliLarge = await Promise.all(
           class="img-responsive"
         />
       </a>
-      Idylická krajina <b>Máchova jezera</b> nabízí pěší <b>procházky</b>, túry, <b>cyklistické trasy</b> a výlety do <b
-        >zajímavých míst</b
-      > – hrady <b>Bezděz</b>, <b>Houska</b> a <b>Kokořín</b>, zřícenina <b>Ralsko</b>, skalní město <b>Sloup</b>,
-      zámky <b>Lemberg</b> a <b>Zákupy</b> či městečko <b>Doksy</b> aj.
+      Idylická krajina <b>Máchova jezera</b> nabízí pěší <b>procházky</b>, túry, <b
+        >cyklistické trasy</b
+      > a výlety do <b>zajímavých míst</b> – hrady <b>Bezděz</b>, <b>Houska</b> a
+      <b>Kokořín</b>, zřícenina <b>Ralsko</b>, skalní město <b>Sloup</b>, zámky <b
+        >Lemberg</b
+      > a <b>Zákupy</b> či městečko <b>Doksy</b> aj.
     </p>
     <p>
-      Ve <b>Starých Splavech</b> se nachází vhodné podmínky pro volný čas – vodní sporty (pouze zákaz motorových
-      lodí), sportovní rybolov (rybník v blízkosti jezera), krytý bazén, <b>tenisový kurt</b>, minigolf, jízda na
-      koni.
+      Ve <b>Starých Splavech</b> se nachází vhodné podmínky pro volný čas – vodní
+      sporty (pouze zákaz motorových lodí), sportovní rybolov (rybník v blízkosti
+      jezera), krytý bazén, <b>tenisový kurt</b>, minigolf, jízda na koni.
     </p>
     <p>
-      Množství <b>pískovcových útvarů</b> je rájem pro děti i horolezce. Písku vděčí i <b>okolí pensionu</b> za
-      rychlé vsáknutí letních dešťů, suché lesní cesty a téměř žádný výskyt nepříjemného hmyzu.
+      Množství <b>pískovcových útvarů</b> je rájem pro děti i horolezce. Písku vděčí
+      i <b>okolí pensionu</b> za rychlé vsáknutí letních dešťů, suché lesní cesty
+      a téměř žádný výskyt nepříjemného hmyzu.
     </p>
   </div>
 
   <h2>Okolí - Máchovo jezero</h2>
   <div class="photoGallery">
-    {okoliImages.map((img, i) => (
-      <a href={okoliLarge[i].src} class="galleryPhoto lightbox" data-lightbox-gallery="gallery">
-        <Image
-          src={img}
-          alt="Okolí Máchova jezera"
-          width={150}
-          height={100}
-          widths={[150, 300]}
-          sizes="150px"
-          format="webp"
-          fit="cover"
-        />
-      </a>
-    ))}
+    {
+      okoliImages.map((img, i) => (
+        <a
+          href={okoliLarge[i].src}
+          class="galleryPhoto lightbox"
+          data-lightbox-gallery="gallery"
+        >
+          <Image
+            src={img}
+            alt="Okolí Máchova jezera"
+            width={150}
+            height={100}
+            widths={[150, 300]}
+            sizes="150px"
+            format="webp"
+            fit="cover"
+          />
+        </a>
+      ))
+    }
   </div>
 </Layout>

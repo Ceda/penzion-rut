@@ -1,47 +1,119 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import { getImage } from 'astro:assets';
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
 
 // Import historie images
-import personl1929 from '../images/historie/personl_rok_1929.jpg';
-import adamscan046 from '../images/historie/Adamscan_046.jpg';
-import adamscan007 from '../images/historie/Adamscan007.jpg';
-import rok1926 from '../images/historie/rok_1926-0.jpg';
-import adamscan038 from '../images/historie/Adamscan_038.jpg';
-import adamscan023 from '../images/historie/Adamscan023.jpg';
-import adamscan026 from '../images/historie/Adamscan026.jpg';
-import adamscan010 from '../images/historie/Adamscan010.jpg';
-import adamscan028 from '../images/historie/Adamscan028.jpg';
-import adamscan025 from '../images/historie/Adamscan025.jpg';
-import adamscan030 from '../images/historie/Adamscan030.jpg';
-import adamscan029 from '../images/historie/Adamscan029.jpg';
-import adamscan034 from '../images/historie/Adamscan034.jpg';
-import adamscan051 from '../images/historie/Adamscan_051.jpg';
-import adamscan053 from '../images/historie/Adamscan_053.jpg';
-import adamscan012 from '../images/historie/Adamscan012.jpg';
-import adamscan021 from '../images/historie/Adamscan021.jpg';
-import adamscan019 from '../images/historie/Adamscan019.jpg';
+import personl1929 from "../images/historie/personl_rok_1929.jpg";
+import adamscan046 from "../images/historie/Adamscan_046.jpg";
+import adamscan007 from "../images/historie/Adamscan007.jpg";
+import rok1926 from "../images/historie/rok_1926-0.jpg";
+import adamscan038 from "../images/historie/Adamscan_038.jpg";
+import adamscan023 from "../images/historie/Adamscan023.jpg";
+import adamscan026 from "../images/historie/Adamscan026.jpg";
+import adamscan010 from "../images/historie/Adamscan010.jpg";
+import adamscan028 from "../images/historie/Adamscan028.jpg";
+import adamscan025 from "../images/historie/Adamscan025.jpg";
+import adamscan030 from "../images/historie/Adamscan030.jpg";
+import adamscan029 from "../images/historie/Adamscan029.jpg";
+import adamscan034 from "../images/historie/Adamscan034.jpg";
+import adamscan051 from "../images/historie/Adamscan_051.jpg";
+import adamscan053 from "../images/historie/Adamscan_053.jpg";
+import adamscan012 from "../images/historie/Adamscan012.jpg";
+import adamscan021 from "../images/historie/Adamscan021.jpg";
+import adamscan019 from "../images/historie/Adamscan019.jpg";
 
 // Generate large versions for lightbox
-const personl1929Large = await getImage({ src: personl1929, width: 1200, format: 'webp' });
-const adamscan046Large = await getImage({ src: adamscan046, width: 1200, format: 'webp' });
-const adamscan007Large = await getImage({ src: adamscan007, width: 1200, format: 'webp' });
-const rok1926Large = await getImage({ src: rok1926, width: 1200, format: 'webp' });
-const adamscan038Large = await getImage({ src: adamscan038, width: 1200, format: 'webp' });
-const adamscan023Large = await getImage({ src: adamscan023, width: 1200, format: 'webp' });
-const adamscan026Large = await getImage({ src: adamscan026, width: 1200, format: 'webp' });
-const adamscan010Large = await getImage({ src: adamscan010, width: 1200, format: 'webp' });
-const adamscan028Large = await getImage({ src: adamscan028, width: 1200, format: 'webp' });
-const adamscan025Large = await getImage({ src: adamscan025, width: 1200, format: 'webp' });
-const adamscan030Large = await getImage({ src: adamscan030, width: 1200, format: 'webp' });
-const adamscan029Large = await getImage({ src: adamscan029, width: 1200, format: 'webp' });
-const adamscan034Large = await getImage({ src: adamscan034, width: 1200, format: 'webp' });
-const adamscan051Large = await getImage({ src: adamscan051, width: 1200, format: 'webp' });
-const adamscan053Large = await getImage({ src: adamscan053, width: 1200, format: 'webp' });
-const adamscan012Large = await getImage({ src: adamscan012, width: 1200, format: 'webp' });
-const adamscan021Large = await getImage({ src: adamscan021, width: 1200, format: 'webp' });
-const adamscan019Large = await getImage({ src: adamscan019, width: 1200, format: 'webp' });
+const personl1929Large = await getImage({
+  src: personl1929,
+  width: 1200,
+  format: "webp",
+});
+const adamscan046Large = await getImage({
+  src: adamscan046,
+  width: 1200,
+  format: "webp",
+});
+const adamscan007Large = await getImage({
+  src: adamscan007,
+  width: 1200,
+  format: "webp",
+});
+const rok1926Large = await getImage({
+  src: rok1926,
+  width: 1200,
+  format: "webp",
+});
+const adamscan038Large = await getImage({
+  src: adamscan038,
+  width: 1200,
+  format: "webp",
+});
+const adamscan023Large = await getImage({
+  src: adamscan023,
+  width: 1200,
+  format: "webp",
+});
+const adamscan026Large = await getImage({
+  src: adamscan026,
+  width: 1200,
+  format: "webp",
+});
+const adamscan010Large = await getImage({
+  src: adamscan010,
+  width: 1200,
+  format: "webp",
+});
+const adamscan028Large = await getImage({
+  src: adamscan028,
+  width: 1200,
+  format: "webp",
+});
+const adamscan025Large = await getImage({
+  src: adamscan025,
+  width: 1200,
+  format: "webp",
+});
+const adamscan030Large = await getImage({
+  src: adamscan030,
+  width: 1200,
+  format: "webp",
+});
+const adamscan029Large = await getImage({
+  src: adamscan029,
+  width: 1200,
+  format: "webp",
+});
+const adamscan034Large = await getImage({
+  src: adamscan034,
+  width: 1200,
+  format: "webp",
+});
+const adamscan051Large = await getImage({
+  src: adamscan051,
+  width: 1200,
+  format: "webp",
+});
+const adamscan053Large = await getImage({
+  src: adamscan053,
+  width: 1200,
+  format: "webp",
+});
+const adamscan012Large = await getImage({
+  src: adamscan012,
+  width: 1200,
+  format: "webp",
+});
+const adamscan021Large = await getImage({
+  src: adamscan021,
+  width: 1200,
+  format: "webp",
+});
+const adamscan019Large = await getImage({
+  src: adamscan019,
+  width: 1200,
+  format: "webp",
+});
 
 const galleryImages = [
   { src: adamscan046, large: adamscan046Large },
@@ -71,14 +143,20 @@ const galleryImages = [
   keywords="historie Pension RUT, Miloš Forman, rodina Formanů, první český pension, Máchovo jezero historie, Staré Splavy historie, Pavel Forman, bratrí Čapkové"
 >
   <div id="crumbs">
-    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/historie">Historie</a>
+    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/historie"
+      >Historie</a
+    >
   </div>
 
   <div class="contents">
     <h2>Pension RUT - Historie</h2>
     <h3>Tady vyrůstal Miloš Forman</h3>
     <p>
-      <a data-lightbox-gallery="gallery" class="galleryPhoto lightbox pull-left" href={personl1929Large.src}>
+      <a
+        data-lightbox-gallery="gallery"
+        class="galleryPhoto lightbox pull-left"
+        href={personl1929Large.src}
+      >
         <Image
           src={personl1929}
           alt="Personál roku 1929"
@@ -89,18 +167,33 @@ const galleryImages = [
           class="img-responsive"
         />
       </a>
-      Staré Splavy – Anna a Rudolf Formanovi byli průkopníky turismu u Máchova jezera, postavili tu první český pension. Rodinný klenot na břehu jezera provozuje rodina Miloše Formana dodnes.
+      Staré Splavy – Anna a Rudolf Formanovi byli průkopníky turismu u Máchova jezera,
+      postavili tu první český pension. Rodinný klenot na břehu jezera provozuje
+      rodina Miloše Formana dodnes.
     </p>
     <p>
-      Pokoj číslo 16 v pensionu Rut ve výstavní ulici Lázeňský vrch ve Starých Splavech u Máchova jezera se dnes pronajímá hostům. Po roce 1945 měl ale výhradního obyvatele. Patřil tehdy třináctiletému Miloši Formanovi, budoucímu světoznámému režisérovi.<br />
-      Jeho starší bratři převzali ve Starých Splavech po rodičích pension Rut, první český pension u Máchova jezera. Krásnou stavbu, na jejímž příběhu lze dobře popsat šťastné i tragické události, které rodinu autora oscarových opusů potkaly.
+      Pokoj číslo 16 v pensionu Rut ve výstavní ulici Lázeňský vrch ve Starých
+      Splavech u Máchova jezera se dnes pronajímá hostům. Po roce 1945 měl ale
+      výhradního obyvatele. Patřil tehdy třináctiletému Miloši Formanovi,
+      budoucímu světoznámému režisérovi.<br />
+      Jeho starší bratři převzali ve Starých Splavech po rodičích pension Rut, první
+      český pension u Máchova jezera. Krásnou stavbu, na jejímž příběhu lze dobře
+      popsat šťastné i tragické události, které rodinu autora oscarových opusů potkaly.
     </p>
     <p>
-      Ale vraťme se o pár let zpátky. Je rok 1926. Na nádherném místě na břehu Máchova jezera stavějí vilu manželé Anna a Rudolf Formanovi. Je to jejich zamilované místo. Objevil ho Rudolf. Za války sloužil mimo jiné u pěšího pluku v České Lípě a v okolí Doks pak byl s armádou na manévrech. Úžasné místo ukázal své milé - Anně.
+      Ale vraťme se o pár let zpátky. Je rok 1926. Na nádherném místě na břehu
+      Máchova jezera stavějí vilu manželé Anna a Rudolf Formanovi. Je to jejich
+      zamilované místo. Objevil ho Rudolf. Za války sloužil mimo jiné u pěšího
+      pluku v České Lípě a v okolí Doks pak byl s armádou na manévrech. Úžasné
+      místo ukázal své milé - Anně.
     </p>
     <h3>Nejlepší místo</h3>
     <p>
-      <a data-lightbox-gallery="gallery" class="galleryPhoto lightbox pull-left" href={adamscan046Large.src}>
+      <a
+        data-lightbox-gallery="gallery"
+        class="galleryPhoto lightbox pull-left"
+        href={adamscan046Large.src}
+      >
         <Image
           src={adamscan046}
           alt="Pension Rut v roce 1926"
@@ -111,17 +204,34 @@ const galleryImages = [
           class="img-responsive"
         />
       </a>
-      „Prababička byla velká vizionářka. Koupila tady jeden z prvních pozemků, takže si mohla vybrat opravdu nejlepší místo. V roce 1926 se začalo stavět. Postavila na břehu jezera rodinnou vilu a pak si řekla, že by se dala využít pro rekreaci," popisuje začátky rodinného podniku Adam Forman, pravnuk zakladatelů a vnuk Blahoslava Formana, nejstaršího z bratrů. Tak vznikl pension Rut, který na Lázeňském vrchu ve Starých Splavech u Máchova jezera, Formanovi vlastní dodnes.
+      „Prababička byla velká vizionářka. Koupila tady jeden z prvních pozemků, takže
+      si mohla vybrat opravdu nejlepší místo. V roce 1926 se začalo stavět. Postavila
+      na břehu jezera rodinnou vilu a pak si řekla, že by se dala využít pro rekreaci,"
+      popisuje začátky rodinného podniku Adam Forman, pravnuk zakladatelů a vnuk
+      Blahoslava Formana, nejstaršího z bratrů. Tak vznikl pension Rut, který na
+      Lázeňském vrchu ve Starých Splavech u Máchova jezera, Formanovi vlastní dodnes.
     </p>
     <p>
-      Využít dům jako pension byl od Anny Formanové průkopnický krok. Staré Splavy se sice začaly oblíbeným letoviskem stávat už od počátku 20. století, ale slibný rozvoj pak přerušila první světová válka a k obnově docházelo až ve 20. letech.
+      Využít dům jako pension byl od Anny Formanové průkopnický krok. Staré
+      Splavy se sice začaly oblíbeným letoviskem stávat už od počátku 20.
+      století, ale slibný rozvoj pak přerušila první světová válka a k obnově
+      docházelo až ve 20. letech.
     </p>
     <p>
-      Rekreační zařízení, která tu tehdy byla, byla německá. Pension Formanových byl prvním českým pensionem u dnešního Máchova jezera. „Byl to bezesporu největší podnik v životě mých rodičů. Pokojíky se pronajímaly na týden či na měsíc. Byla tu kancelář, jídelna a k hotýlku patřila i malá cukrárna. Dům se na zimu zavíral a sezona trvala pouze od června do září," popsal později ve své knize „Co já vím?" Miloš Forman.
+      Rekreační zařízení, která tu tehdy byla, byla německá. Pension Formanových
+      byl prvním českým pensionem u dnešního Máchova jezera. „Byl to bezesporu
+      největší podnik v životě mých rodičů. Pokojíky se pronajímaly na týden či
+      na měsíc. Byla tu kancelář, jídelna a k hotýlku patřila i malá cukrárna.
+      Dům se na zimu zavíral a sezona trvala pouze od června do září," popsal
+      později ve své knize „Co já vím?" Miloš Forman.
     </p>
     <h3>První host roku 1932</h3>
     <p>
-      <a data-lightbox-gallery="gallery" class="galleryPhoto lightbox pull-left" href={adamscan007Large.src}>
+      <a
+        data-lightbox-gallery="gallery"
+        class="galleryPhoto lightbox pull-left"
+        href={adamscan007Large.src}
+      >
         <Image
           src={adamscan007}
           alt="První host roku 1932"
@@ -132,28 +242,56 @@ const galleryImages = [
           class="img-responsive"
         />
       </a>
-      Slavný režisér se narodil v roce 1932, když už byl pension vybudován. První zápis v návštěvní knize pensionu z toho roku zní: „První náš host v r. 1932 - náš Milošek. Mnoho štěstí!!!"
+      Slavný režisér se narodil v roce 1932, když už byl pension vybudován. První
+      zápis v návštěvní knize pensionu z toho roku zní: „První náš host v r. 1932
+      - náš Milošek. Mnoho štěstí!!!"
     </p>
     <p>
-      Od té doby vítal Miloš každou novou letní sezonu u Máchova jezera až do roku 1950. Vždy v květnu se Anna Formanová s malým Milošem vypravila do Starých Splavů, aby připravila pension na novou sezonu. Na začátku prázdnin pak za nimi dorazil i Rudolf se staršími syny.
+      Od té doby vítal Miloš každou novou letní sezonu u Máchova jezera až do
+      roku 1950. Vždy v květnu se Anna Formanová s malým Milošem vypravila do
+      Starých Splavů, aby připravila pension na novou sezonu. Na začátku
+      prázdnin pak za nimi dorazil i Rudolf se staršími syny.
     </p>
     <p>
-      Máchovu jezeru se v té době říkalo různě. V německém prostředí Dokeska se nejčastěji objevoval název Hiršperský rybník. To se Rudolfu Formanovi nelíbilo. „Otci ten název připadal moc fádní," zaznamenal ve svých vzpomínkách Miloš Forman. „Proto napsal článek do místních novin, v němž navrhoval, aby se jezero přejmenovalo podle slavného romantického básníka, pro něhož se stalo inspirací k jeho nejlepšímu dílu." A název Máchovo jezero se ujal.
+      Máchovu jezeru se v té době říkalo různě. V německém prostředí Dokeska se
+      nejčastěji objevoval název Hiršperský rybník. To se Rudolfu Formanovi
+      nelíbilo. „Otci ten název připadal moc fádní," zaznamenal ve svých
+      vzpomínkách Miloš Forman. „Proto napsal článek do místních novin, v němž
+      navrhoval, aby se jezero přejmenovalo podle slavného romantického básníka,
+      pro něhož se stalo inspirací k jeho nejlepšímu dílu." A název Máchovo
+      jezero se ujal.
     </p>
     <h3>Přijeli i bratři Čapkové</h3>
     <p>
-      Pensionu Rut se v těch letech velmi dobře dařilo. „Stalo se z něj sídlo české inteligence, vlastenecké doupě. Sjížděla se sem spousta zajímavých lidí. Ve staré návštěvní knize, kterou uchováváme doma v Čáslavi, lze najít velká jména. Byli tu třeba bratři Čapkové, nebo třeba první členové tehdy nově založeného Ruského sboru Alexandrovců" vypráví Adam Forman, zástupce jedné z nejmladších generací rodu Formanů.
+      Pensionu Rut se v těch letech velmi dobře dařilo. „Stalo se z něj sídlo
+      české inteligence, vlastenecké doupě. Sjížděla se sem spousta zajímavých
+      lidí. Ve staré návštěvní knize, kterou uchováváme doma v Čáslavi, lze
+      najít velká jména. Byli tu třeba bratři Čapkové, nebo třeba první členové
+      tehdy nově založeného Ruského sboru Alexandrovců" vypráví Adam Forman,
+      zástupce jedné z nejmladších generací rodu Formanů.
     </p>
     <p>
-      Později ale všechno začalo nabírat smutné až tragické obrátky. V roce 1938 postoupilo Československo v důsledku mnichovské dohody Německu pohraničí. Pension Formanových se rázem ocitl na německém území. O rok později začala válka.
+      Později ale všechno začalo nabírat smutné až tragické obrátky. V roce 1938
+      postoupilo Československo v důsledku mnichovské dohody Německu pohraničí.
+      Pension Formanových se rázem ocitl na německém území. O rok později začala
+      válka.
     </p>
     <p>
-      „Za války bylo Máchovo jezero podivnou končinou. V Sudetech nezůstala jediná česká škola, takže jsem musel chodit do německé školy v Doksech," vzpomíná Miloš Forman.<br />
-      V roce 1940 zatklo gestapo jeho otce, který ilegálně působil v odbojové skupině. Věznili ho na mnoha místech, mimo jiné i v České Lípě. O dva roky později zatklo gestapo i Annu Formanovou a pension převzali Němci. V době bombardování Berlína se stal pension Rut útočištěm žen a dětí německých důstojníků.
+      „Za války bylo Máchovo jezero podivnou končinou. V Sudetech nezůstala
+      jediná česká škola, takže jsem musel chodit do německé školy v Doksech,"
+      vzpomíná Miloš Forman.<br />
+      V roce 1940 zatklo gestapo jeho otce, který ilegálně působil v odbojové skupině.
+      Věznili ho na mnoha místech, mimo jiné i v České Lípě. O dva roky později zatklo
+      gestapo i Annu Formanovou a pension převzali Němci. V době bombardování Berlína
+      se stal pension Rut útočištěm žen a dětí německých důstojníků.
     </p>
     <h3>Po Němcích přišlo ROH</h3>
     <p>
-      <a data-lightbox-gallery="gallery" class="galleryPhoto lightbox pull-left" href={rok1926Large.src}>
+      <a
+        data-lightbox-gallery="gallery"
+        class="galleryPhoto lightbox pull-left"
+        href={rok1926Large.src}
+      >
         <Image
           src={rok1926}
           alt="Pension v roce 1926"
@@ -164,35 +302,62 @@ const galleryImages = [
           class="img-responsive"
         />
       </a>
-      Rodiče bratrů Blahoslava, Pavla a Miloše byli posláni do koncentračních táborů. Z Osvětimi a Buchenwaldu se už nevrátili. Po válce tak museli bratři pokračovat ve snu svých rodičů sami. Dlouho to ale nevydrželo. V roce 1950 pension zabavilo ROH - Revoluční odborové hnutí - a z pensionu Rut se stala rekreačka.
+      Rodiče bratrů Blahoslava, Pavla a Miloše byli posláni do koncentračních táborů.
+      Z Osvětimi a Buchenwaldu se už nevrátili. Po válce tak museli bratři pokračovat
+      ve snu svých rodičů sami. Dlouho to ale nevydrželo. V roce 1950 pension zabavilo
+      ROH - Revoluční odborové hnutí - a z pensionu Rut se stala rekreačka.
     </p>
     <p>
-      Pension se Formanům vrátil až v roce 1991. Vzkříšení jeho slávy tehdy zařizovala především Boženka, žena nejstaršího z bratrů Formanových, který v roce 1960 tragicky zahynul v Tatrách při výstupu na Ďumbier. Boženku na dálku z Austrálie a USA podporovali Pavel a Miloš. „Strýček Pavel sem do Splavů jezdil jednou za rok. Miloš sem zavítá, kdykoliv je v Česku," říká o bratrech svého děda Adam Forman.
+      Pension se Formanům vrátil až v roce 1991. Vzkříšení jeho slávy tehdy
+      zařizovala především Boženka, žena nejstaršího z bratrů Formanových, který
+      v roce 1960 tragicky zahynul v Tatrách při výstupu na Ďumbier. Boženku na
+      dálku z Austrálie a USA podporovali Pavel a Miloš. „Strýček Pavel sem do
+      Splavů jezdil jednou za rok. Miloš sem zavítá, kdykoliv je v Česku," říká
+      o bratrech svého děda Adam Forman.
     </p>
     <p style="text-align:right"><small>Autor textu: Michael Polak</small></p>
     <p>
-      Pavel Forman – akademický malíř, emigroval v roce 1968 se svoji rodinou do Austrálie, ve které se plně věnoval svému výtvarnému poslání a zapsal se jako jeden z nejvýzanmějších krajinářů ze školy Otakara Nejedlého. Jeho obrazy jsou zastoupeny v řadě světových sbírek a byly vystavovány po celém světě. Pension Rut je současně jeho obrazárnou. Pavel zemřel v Australském Brisbane v roce 2008. Více na <a href="http://pavelforman.com/" target="_blank">www.pavelforman.com</a>
+      Pavel Forman – akademický malíř, emigroval v roce 1968 se svoji rodinou do
+      Austrálie, ve které se plně věnoval svému výtvarnému poslání a zapsal se
+      jako jeden z nejvýzanmějších krajinářů ze školy Otakara Nejedlého. Jeho
+      obrazy jsou zastoupeny v řadě světových sbírek a byly vystavovány po celém
+      světě. Pension Rut je současně jeho obrazárnou. Pavel zemřel v Australském
+      Brisbane v roce 2008. Více na <a
+        href="http://pavelforman.com/"
+        target="_blank">www.pavelforman.com</a
+      >
     </p>
     <p>
-      Miloš Forman – nejmladší z bratrů zůstal ve Spojených státech poté co mu byl odepřen návrat do republiky v roce 1967. Poté následovala jeho úspěšná režisérská dráha v USA. Více na <a href="http://milosforman.com/" target="_blank">www.milsoforman.com</a>
+      Miloš Forman – nejmladší z bratrů zůstal ve Spojených státech poté co mu
+      byl odepřen návrat do republiky v roce 1967. Poté následovala jeho úspěšná
+      režisérská dráha v USA. Více na <a
+        href="http://milosforman.com/"
+        target="_blank">www.milsoforman.com</a
+      >
     </p>
   </div>
 
   <h2>Historické fotografie</h2>
   <div class="photoGallery">
-    {galleryImages.map((img) => (
-      <a href={img.large.src} class="galleryPhoto lightbox" data-lightbox-gallery="gallery">
-        <Image
-          src={img.src}
-          alt="Historická fotografie"
-          width={150}
-          height={100}
-          widths={[150, 300]}
-          sizes="150px"
-          format="webp"
-          fit="cover"
-        />
-      </a>
-    ))}
+    {
+      galleryImages.map((img) => (
+        <a
+          href={img.large.src}
+          class="galleryPhoto lightbox"
+          data-lightbox-gallery="gallery"
+        >
+          <Image
+            src={img.src}
+            alt="Historická fotografie"
+            width={150}
+            height={100}
+            widths={[150, 300]}
+            sizes="150px"
+            format="webp"
+            fit="cover"
+          />
+        </a>
+      ))
+    }
   </div>
 </Layout>

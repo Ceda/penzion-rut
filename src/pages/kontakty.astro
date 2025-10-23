@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
@@ -8,21 +8,26 @@ import Layout from '../layouts/Layout.astro';
   keywords="kontakt Pension RUT, rezervace ubytování Máchovo jezero, telefon pension Staré Splavy, email recepce, adresa pension, GPS Staré Splavy, jak se dostat"
 >
   <div id="crumbs">
-    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/kontakty">Kontakty</a>
+    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/kontakty"
+      >Kontakty</a
+    >
   </div>
 
   <h2>Pension RUT kontaktní informace</h2>
 
   <script type="text/javascript">
     function initialize() {
-      var center = new google.maps.LatLng(50.58707513286003, 14.638432025909424);
+      var center = new google.maps.LatLng(
+        50.58707513286003,
+        14.638432025909424
+      );
       var myOptions = {
         zoom: 14,
         center: center,
         scrollwheel: false,
       };
-      var map = new google.maps.Map(document.getElementById('map3'), myOptions);
-      map.setMapTypeId(google.maps.MapTypeId['TERRAIN']);
+      var map = new google.maps.Map(document.getElementById("map3"), myOptions);
+      map.setMapTypeId(google.maps.MapTypeId["TERRAIN"]);
 
       var beachMarker = new google.maps.Marker({
         position: center,
@@ -72,7 +77,8 @@ import Layout from '../layouts/Layout.astro';
             </tr>
             <tr>
               <td>
-                <b>Email:</b> <a href="mailto:recepce@pensionrut.cz">recepce@pensionrut.cz</a>
+                <b>Email:</b>
+                <a href="mailto:recepce@pensionrut.cz">recepce@pensionrut.cz</a>
               </td>
             </tr>
           </tbody>
@@ -84,8 +90,12 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-  <script src="https://www.google.com/recaptcha/api.js?render=6LcQvLkkAAAAAGpaAsyC8pbql0ji3UkAr73gFSDS"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"
+  ></script>
+  <script
+    src="https://www.google.com/recaptcha/api.js?render=6LcQvLkkAAAAAGpaAsyC8pbql0ji3UkAr73gFSDS"
+  ></script>
 
   <div id="form-1">
     <form
@@ -96,7 +106,9 @@ import Layout from '../layouts/Layout.astro';
       method="post"
       accept-charset="utf-8"
     >
-      <div style="display:none;"><input type="hidden" name="_method" value="POST" /></div>
+      <div style="display:none;">
+        <input type="hidden" name="_method" value="POST" />
+      </div>
       <fieldset>
         <legend>Kontaktní formulář</legend>
         <div class="input text">
@@ -130,12 +142,22 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <div class="input textarea">
           <label for="FormVaseZprava3">Vaše zpráva:</label>
-          <textarea name="data[Form][Vase_zprava3]" cols="30" rows="6" id="FormVaseZprava3"></textarea>
+          <textarea
+            name="data[Form][Vase_zprava3]"
+            cols="30"
+            rows="6"
+            id="FormVaseZprava3"></textarea>
         </div>
         <script type="text/javascript" src="/js/form.js"></script>
       </fieldset>
-      <input type="hidden" name="data[Form][g-recaptcha-response]" id="g-recaptcha-response" />
-      <div class="submit"><input class="btn btn-large" type="submit" value="Odeslat" /></div>
+      <input
+        type="hidden"
+        name="data[Form][g-recaptcha-response]"
+        id="g-recaptcha-response"
+      />
+      <div class="submit">
+        <input class="btn btn-large" type="submit" value="Odeslat" />
+      </div>
     </form>
   </div>
 
@@ -143,14 +165,18 @@ import Layout from '../layouts/Layout.astro';
     $(document).ready(function () {});
   </script>
   <script is:inline>
-    if (typeof grecaptcha !== 'undefined') {
+    if (typeof grecaptcha !== "undefined") {
       grecaptcha.ready(function () {
-        grecaptcha.execute('6LcQvLkkAAAAAGpaAsyC8pbql0ji3UkAr73gFSDS', { action: 'submit' }).then(function (token) {
-          const element = document.getElementById('g-recaptcha-response');
-          if (element) {
-            element.value = token;
-          }
-        });
+        grecaptcha
+          .execute("6LcQvLkkAAAAAGpaAsyC8pbql0ji3UkAr73gFSDS", {
+            action: "submit",
+          })
+          .then(function (token) {
+            const element = document.getElementById("g-recaptcha-response");
+            if (element) {
+              element.value = token;
+            }
+          });
       });
     }
   </script>

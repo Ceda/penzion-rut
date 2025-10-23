@@ -1,10 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import { getImage } from 'astro:assets';
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
 
 // Dynamicky načti všechny obrázky z galerie
-const allImages = import.meta.glob<{ default: ImageMetadata }>('../images/galerie/*.{jpg,JPG}', { eager: true });
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  "../images/galerie/*.{jpg,JPG}",
+  { eager: true }
+);
 
 // Funkce pro získání obrázku podle jména
 const getImageByName = (name: string) => {
@@ -14,53 +17,132 @@ const getImageByName = (name: string) => {
 
 // Historické fotografie
 const historieImages = [
-  'Adamscan_046.jpg', 'Adamscan007.jpg', 'personl_rok_1929.jpg', 'rok_1926-0.jpg',
-  'Adamscan_038.jpg', 'Adamscan023.jpg', 'Adamscan026.jpg', 'Adamscan010.jpg',
-  'Adamscan028.jpg', 'Adamscan025.jpg', 'Adamscan030.jpg', 'Adamscan029.jpg',
-  'Adamscan034.jpg', 'Adamscan_051.jpg', 'Adamscan_053.jpg', 'Adamscan012.jpg',
-  'Adamscan021.jpg', 'Adamscan019.jpg'
-].map(name => getImageByName(name)).filter(Boolean);
+  "Adamscan_046.jpg",
+  "Adamscan007.jpg",
+  "personl_rok_1929.jpg",
+  "rok_1926-0.jpg",
+  "Adamscan_038.jpg",
+  "Adamscan023.jpg",
+  "Adamscan026.jpg",
+  "Adamscan010.jpg",
+  "Adamscan028.jpg",
+  "Adamscan025.jpg",
+  "Adamscan030.jpg",
+  "Adamscan029.jpg",
+  "Adamscan034.jpg",
+  "Adamscan_051.jpg",
+  "Adamscan_053.jpg",
+  "Adamscan012.jpg",
+  "Adamscan021.jpg",
+  "Adamscan019.jpg",
+]
+  .map((name) => getImageByName(name))
+  .filter(Boolean);
 
 // Ubytování
 const ubytovaniImages = [
-  'DSC1421_hdr_a.jpg', 'DSC_6136.jpg', 'DSC_6152.jpg', 'DSC_5041.jpg',
-  'DSC_5037.jpg', 'DSC_4757.JPG', 'DSC_6146.JPG', 'DSC_6151.jpg',
-  'DSC_6449.JPG', 'DSC_6450.JPG', 'DSC_6148.jpg', 'DSC_6139.jpg',
-  'DSC_6458.JPG', 'DSC_6460.JPG', 'DSC_6470.JPG', 'DSC_6473.JPG',
-  'IMG_1858.JPG', 'DSC_6471.JPG', 'DSC_4746.JPG', 'IMG_5861.JPG',
-  'pokoj_f.JPG', 'Pokoje_8643.jpg', 'Pokoje_8674.jpg', 'Pokoje_8675.jpg',
-  'Pokoje_8677.jpg', 'pokoj_a.JPG', 'Pokoje_8651.jpg', 'Pokoje_8673.jpg',
-  'Pokoje_8687.jpg', 'Pokoje_8688.jpg', 'Pokoje_8690.jpg', 'Pokoje_8695.jpg',
-  'Pokoje_8696.jpg', 'pokoj_e.jpg', 'pokoj_c.JPG', 'pokoj_g.JPG',
-  'DSC_4863.JPG', 'DSC_5046.JPG'
-].map(name => getImageByName(name)).filter(Boolean);
+  "DSC1421_hdr_a.jpg",
+  "DSC_6136.jpg",
+  "DSC_6152.jpg",
+  "DSC_5041.jpg",
+  "DSC_5037.jpg",
+  "DSC_4757.JPG",
+  "DSC_6146.JPG",
+  "DSC_6151.jpg",
+  "DSC_6449.JPG",
+  "DSC_6450.JPG",
+  "DSC_6148.jpg",
+  "DSC_6139.jpg",
+  "DSC_6458.JPG",
+  "DSC_6460.JPG",
+  "DSC_6470.JPG",
+  "DSC_6473.JPG",
+  "IMG_1858.JPG",
+  "DSC_6471.JPG",
+  "DSC_4746.JPG",
+  "IMG_5861.JPG",
+  "pokoj_f.JPG",
+  "Pokoje_8643.jpg",
+  "Pokoje_8674.jpg",
+  "Pokoje_8675.jpg",
+  "Pokoje_8677.jpg",
+  "pokoj_a.JPG",
+  "Pokoje_8651.jpg",
+  "Pokoje_8673.jpg",
+  "Pokoje_8687.jpg",
+  "Pokoje_8688.jpg",
+  "Pokoje_8690.jpg",
+  "Pokoje_8695.jpg",
+  "Pokoje_8696.jpg",
+  "pokoj_e.jpg",
+  "pokoj_c.JPG",
+  "pokoj_g.JPG",
+  "DSC_4863.JPG",
+  "DSC_5046.JPG",
+]
+  .map((name) => getImageByName(name))
+  .filter(Boolean);
 
 // Stravování
 const stravovaniImages = [
-  'nespresso-0.jpg', 'moucnik-0.jpg', 'vecere-0.jpg', 'vecer_na_baru-0.jpg',
-  'v_kuchyni-0.jpg', 'DSC_6750.jpg', 'pavel_u_grilu-0.jpg', 'letni_jidelna-0.jpg',
-  'DSC0251.jpg', 'DSC0183.jpg', 'DSC0184.JPG', 'DSC0182.JPG'
-].map(name => getImageByName(name)).filter(Boolean);
+  "nespresso-0.jpg",
+  "moucnik-0.jpg",
+  "vecere-0.jpg",
+  "vecer_na_baru-0.jpg",
+  "v_kuchyni-0.jpg",
+  "DSC_6750.jpg",
+  "pavel_u_grilu-0.jpg",
+  "letni_jidelna-0.jpg",
+  "DSC0251.jpg",
+  "DSC0183.jpg",
+  "DSC0184.JPG",
+  "DSC0182.JPG",
+]
+  .map((name) => getImageByName(name))
+  .filter(Boolean);
 
 // Regata
 const regataImages = [
-  'DSC_9409.jpg', 'DSC_9443.jpg', 'DSC_9469.jpg', 'DSC_9474.jpg',
-  'DSC_9405.JPG', 'DSC_9401_Vltava.jpg', 'DSC_9445.JPG', 'DSC_9455.JPG',
-  'DSC_9473.JPG', 'DSC_9447.JPG', 'DSC_9491.JPG', 'DSC_9510.JPG',
-  'DSC_9535.JPG', 'DSC_9347.JPG', 'DSC_9393.JPG', 'DSC_9498.JPG'
-].map(name => getImageByName(name)).filter(Boolean);
+  "DSC_9409.jpg",
+  "DSC_9443.jpg",
+  "DSC_9469.jpg",
+  "DSC_9474.jpg",
+  "DSC_9405.JPG",
+  "DSC_9401_Vltava.jpg",
+  "DSC_9445.JPG",
+  "DSC_9455.JPG",
+  "DSC_9473.JPG",
+  "DSC_9447.JPG",
+  "DSC_9491.JPG",
+  "DSC_9510.JPG",
+  "DSC_9535.JPG",
+  "DSC_9347.JPG",
+  "DSC_9393.JPG",
+  "DSC_9498.JPG",
+]
+  .map((name) => getImageByName(name))
+  .filter(Boolean);
 
 // Okolí
 const okoliImages = [
-  'bezdez-0.jpg', 'jezero-0.jpg', 'parnik_Hynek-0.jpg', 'plaz-0.jpg',
-  'DSC_4982.jpg', 'okoli-0.jpg', 'DSC_5030.jpg', 'DSC_4804.jpg',
-  'pohled_z_okna-0.jpg', 'DSC_4809.jpg'
-].map(name => getImageByName(name)).filter(Boolean);
+  "bezdez-0.jpg",
+  "jezero-0.jpg",
+  "parnik_Hynek-0.jpg",
+  "plaz-0.jpg",
+  "DSC_4982.jpg",
+  "okoli-0.jpg",
+  "DSC_5030.jpg",
+  "DSC_4804.jpg",
+  "pohled_z_okna-0.jpg",
+  "DSC_4809.jpg",
+]
+  .map((name) => getImageByName(name))
+  .filter(Boolean);
 
 // Připrav velké verze pro lightbox
 const prepareLargeImages = async (images: any[]) => {
   return await Promise.all(
-    images.map(img => getImage({ src: img, width: 1200, format: 'webp' }))
+    images.map((img) => getImage({ src: img, width: 1200, format: "webp" }))
   );
 };
 
@@ -77,96 +159,128 @@ const okoliLarge = await prepareLargeImages(okoliImages);
   keywords="fotogalerie Pension RUT, fotky ubytování, pokoje fotografie, Máchovo jezero fotky, historické fotografie, Regata RUT Classic, Staré Splavy galerie"
 >
   <div id="crumbs">
-    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/fotogalerie">Fotogalerie</a>
+    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/fotogalerie"
+      >Fotogalerie</a
+    >
   </div>
 
   <h2>Historické fotografie</h2>
   <div class="photoGallery">
-    {historieImages.map((img, i) => (
-      <a href={historieLarge[i].src} class="galleryPhoto lightbox" data-lightbox-gallery="gallery">
-        <Image
-          src={img}
-          alt="Historická fotografie"
-          width={150}
-          height={100}
-          widths={[150, 300]}
-          sizes="150px"
-          format="webp"
-          fit="cover"
-        />
-      </a>
-    ))}
+    {
+      historieImages.map((img, i) => (
+        <a
+          href={historieLarge[i].src}
+          class="galleryPhoto lightbox"
+          data-lightbox-gallery="gallery"
+        >
+          <Image
+            src={img}
+            alt="Historická fotografie"
+            width={150}
+            height={100}
+            widths={[150, 300]}
+            sizes="150px"
+            format="webp"
+            fit="cover"
+          />
+        </a>
+      ))
+    }
   </div>
 
   <h2>Fotografie ubytování pensionu RUT</h2>
   <div class="photoGallery">
-    {ubytovaniImages.map((img, i) => (
-      <a href={ubytovaniLarge[i].src} class="galleryPhoto lightbox" data-lightbox-gallery="gallery">
-        <Image
-          src={img}
-          alt="Ubytování"
-          width={150}
-          height={100}
-          widths={[150, 300]}
-          sizes="150px"
-          format="webp"
-          fit="cover"
-        />
-      </a>
-    ))}
+    {
+      ubytovaniImages.map((img, i) => (
+        <a
+          href={ubytovaniLarge[i].src}
+          class="galleryPhoto lightbox"
+          data-lightbox-gallery="gallery"
+        >
+          <Image
+            src={img}
+            alt="Ubytování"
+            width={150}
+            height={100}
+            widths={[150, 300]}
+            sizes="150px"
+            format="webp"
+            fit="cover"
+          />
+        </a>
+      ))
+    }
   </div>
 
   <h2>Stravování</h2>
   <div class="photoGallery">
-    {stravovaniImages.map((img, i) => (
-      <a href={stravovaniLarge[i].src} class="galleryPhoto lightbox" data-lightbox-gallery="gallery">
-        <Image
-          src={img}
-          alt="Stravování"
-          width={150}
-          height={100}
-          widths={[150, 300]}
-          sizes="150px"
-          format="webp"
-          fit="cover"
-        />
-      </a>
-    ))}
+    {
+      stravovaniImages.map((img, i) => (
+        <a
+          href={stravovaniLarge[i].src}
+          class="galleryPhoto lightbox"
+          data-lightbox-gallery="gallery"
+        >
+          <Image
+            src={img}
+            alt="Stravování"
+            width={150}
+            height={100}
+            widths={[150, 300]}
+            sizes="150px"
+            format="webp"
+            fit="cover"
+          />
+        </a>
+      ))
+    }
   </div>
 
   <h2>Regata Rut Classic - Fotogalerie</h2>
   <div class="photoGallery">
-    {regataImages.map((img, i) => (
-      <a href={regataLarge[i].src} class="galleryPhoto lightbox" data-lightbox-gallery="gallery">
-        <Image
-          src={img}
-          alt="Regata"
-          width={150}
-          height={100}
-          widths={[150, 300]}
-          sizes="150px"
-          format="webp"
-          fit="cover"
-        />
-      </a>
-    ))}
+    {
+      regataImages.map((img, i) => (
+        <a
+          href={regataLarge[i].src}
+          class="galleryPhoto lightbox"
+          data-lightbox-gallery="gallery"
+        >
+          <Image
+            src={img}
+            alt="Regata"
+            width={150}
+            height={100}
+            widths={[150, 300]}
+            sizes="150px"
+            format="webp"
+            fit="cover"
+          />
+        </a>
+      ))
+    }
   </div>
 
   <h2>Okolí - Máchovo jezero</h2>
   <div class="photoGallery">
-    {okoliImages.map((img, i) => (
-      <a href={okoliLarge[i].src} class="galleryPhoto lightbox" data-lightbox-gallery="gallery">
-        <Image
-          src={img}
-          alt="Okolí"
-          width={150}
-          height={100}
-          widths={[150, 300]}
-          sizes="150px"
-          format="webp"
-          fit="cover"
-        />
-      </a>
-    ))}
+    {
+      okoliImages.map((img, i) => (
+        <a
+          href={okoliLarge[i].src}
+          class="galleryPhoto lightbox"
+          data-lightbox-gallery="gallery"
+        >
+          <Image
+            src={img}
+            alt="Okolí"
+            width={150}
+            height={100}
+            widths={[150, 300]}
+            sizes="150px"
+            format="webp"
+            fit="cover"
+          />
+        </a>
+      ))
+    }
   </div>
 </Layout>

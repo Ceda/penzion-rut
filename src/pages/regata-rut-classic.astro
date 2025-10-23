@@ -1,10 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import { getImage } from 'astro:assets';
-import regataImg from '../images/regata/regata-2015.jpg';
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
+import regataImg from "../images/regata/regata-2015.jpg";
 
-const allImages = import.meta.glob<{ default: ImageMetadata }>('../images/galerie/*.{jpg,JPG}', { eager: true });
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  "../images/galerie/*.{jpg,JPG}",
+  { eager: true }
+);
 
 const getImageByName = (name: string) => {
   const path = `../images/galerie/${name}`;
@@ -13,14 +16,28 @@ const getImageByName = (name: string) => {
 
 // Regata galerie
 const regataImages = [
-  'DSC_9409.jpg', 'DSC_9443.jpg', 'DSC_9469.jpg', 'DSC_9474.jpg',
-  'DSC_9405.JPG', 'DSC_9401_Vltava.jpg', 'DSC_9445.JPG', 'DSC_9455.JPG',
-  'DSC_9473.JPG', 'DSC_9447.JPG', 'DSC_9491.JPG', 'DSC_9510.JPG',
-  'DSC_9535.JPG', 'DSC_9347.JPG', 'DSC_9393.JPG', 'DSC_9498.JPG'
-].map(name => getImageByName(name)).filter(Boolean);
+  "DSC_9409.jpg",
+  "DSC_9443.jpg",
+  "DSC_9469.jpg",
+  "DSC_9474.jpg",
+  "DSC_9405.JPG",
+  "DSC_9401_Vltava.jpg",
+  "DSC_9445.JPG",
+  "DSC_9455.JPG",
+  "DSC_9473.JPG",
+  "DSC_9447.JPG",
+  "DSC_9491.JPG",
+  "DSC_9510.JPG",
+  "DSC_9535.JPG",
+  "DSC_9347.JPG",
+  "DSC_9393.JPG",
+  "DSC_9498.JPG",
+]
+  .map((name) => getImageByName(name))
+  .filter(Boolean);
 
 const regataLarge = await Promise.all(
-  regataImages.map(img => getImage({ src: img, width: 1200, format: 'webp' }))
+  regataImages.map((img) => getImage({ src: img, width: 1200, format: "webp" }))
 );
 ---
 
@@ -30,24 +47,28 @@ const regataLarge = await Promise.all(
   keywords="Regata RUT Classic, Pohár White Queen, plachetnice Máchovo jezero, závod plachetnic, jachting, dřevěné lodě, veteránské lodě, společenská událost, závody na jezeře"
 >
   <div id="crumbs">
-    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/regata-rut-classic">Regata RUT Classic</a>
+    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a
+      href="/regata-rut-classic">Regata RUT Classic</a
+    >
   </div>
 
   <div class="contents">
     <h2>Regata Rut Classic</h2>
     <p class="claim">
-      Kamil Kolesa a Adam Forman se v roce 2010 rozhodli uspořádat závod klasických dřevěných plachetnic – veteránů.
-      Pohár Withe Queen.
+      Kamil Kolesa a Adam Forman se v roce 2010 rozhodli uspořádat závod
+      klasických dřevěných plachetnic – veteránů. Pohár Withe Queen.
     </p>
     <p>
-      Oba měli dva jolové křižníky – White Queen a Racka – dva oldtimery, dvě dřevěné lodě! Dobrý závod potřebuje
-      pořádný večírek, medaile a pohár. To vše pánové měli. A tak se odstartovaly závody, společenská událost, která
-      měla všechny předpoklady stát se zábavnou akcí uprostřed léta, která nadchne jachtaře i návštěvníky a obyvatele
-      Máchova jezera.
+      Oba měli dva jolové křižníky – White Queen a Racka – dva oldtimery, dvě
+      dřevěné lodě! Dobrý závod potřebuje pořádný večírek, medaile a pohár. To
+      vše pánové měli. A tak se odstartovaly závody, společenská událost, která
+      měla všechny předpoklady stát se zábavnou akcí uprostřed léta, která
+      nadchne jachtaře i návštěvníky a obyvatele Máchova jezera.
     </p>
     <p>
-      V roce 2013 se z jednodenního závodu stala dokonce čtyřdenní akce a tak Pohár Withe Queen navštívilo až sto
-      lidí, německá televizní stanice ARD i třeba prázdninový reportér Lubomír Smatana s přímým vstupem do
+      V roce 2013 se z jednodenního závodu stala dokonce čtyřdenní akce a tak
+      Pohár Withe Queen navštívilo až sto lidí, německá televizní stanice ARD i
+      třeba prázdninový reportér Lubomír Smatana s přímým vstupem do
       Radiožurnálu.
     </p>
     <p style="text-align: center;">
@@ -60,22 +81,29 @@ const regataLarge = await Promise.all(
       />
     </p>
     <p class="claim">
-      Desáty ročník společenské akce Regaty Rut Classic se bude konat v termínu od pátku 28. 6. do neděle 30. 6.
-      Hlavní závod Withe Queen Challenge se tradičně pojede v neděli 30. 6. 2024
+      Desáty ročník společenské akce Regaty Rut Classic se bude konat v termínu
+      od pátku 28. 6. do neděle 30. 6. Hlavní závod Withe Queen Challenge se
+      tradičně pojede v neděli 30. 6. 2024
     </p>
     <ul>
       <li>Pátek v odpoledních hodinách vykládání lodí na vodu</li>
       <li>
-        Večerní jízda osvětlených plavidel po jezeře se zakončením v Jachtklubu Staré Splavy, kde bude probíhat noční
-        párty s občerstvením a tancem
+        Večerní jízda osvětlených plavidel po jezeře se zakončením v Jachtklubu
+        Staré Splavy, kde bude probíhat noční párty s občerstvením a tancem
       </li>
       <li>Sobota rozjížďky</li>
       <li>
-        Sobota od 20 hodin slavnostní zahájení poháru Withe Queen na terasách pensionu RUT Formanovi s občerstvením a
-        živou hudbou
+        Sobota od 20 hodin slavnostní zahájení poháru Withe Queen na terasách
+        pensionu RUT Formanovi s občerstvením a živou hudbou
       </li>
-      <li>Neděle kolem 11 hodiny start poháru Withe Queen ze zátoky ve Starých Splavech</li>
-      <li>Odpoledne vyhlášení výsledků a společenský život v Jachtklubu Máchova jezera ve Starých Splavech</li>
+      <li>
+        Neděle kolem 11 hodiny start poháru Withe Queen ze zátoky ve Starých
+        Splavech
+      </li>
+      <li>
+        Odpoledne vyhlášení výsledků a společenský život v Jachtklubu Máchova
+        jezera ve Starých Splavech
+      </li>
     </ul>
     <div class="row-fluid">
       <div class="span3">
@@ -128,19 +156,25 @@ const regataLarge = await Promise.all(
 
   <h2>Regata Rut Classic - Fotogalerie</h2>
   <div class="photoGallery">
-    {regataImages.map((img, i) => (
-      <a href={regataLarge[i].src} class="galleryPhoto lightbox" data-lightbox-gallery="gallery">
-        <Image
-          src={img}
-          alt="Regata Rut Classic"
-          width={150}
-          height={100}
-          widths={[150, 300]}
-          sizes="150px"
-          format="webp"
-          fit="cover"
-        />
-      </a>
-    ))}
+    {
+      regataImages.map((img, i) => (
+        <a
+          href={regataLarge[i].src}
+          class="galleryPhoto lightbox"
+          data-lightbox-gallery="gallery"
+        >
+          <Image
+            src={img}
+            alt="Regata Rut Classic"
+            width={150}
+            height={100}
+            widths={[150, 300]}
+            sizes="150px"
+            format="webp"
+            fit="cover"
+          />
+        </a>
+      ))
+    }
   </div>
 </Layout>

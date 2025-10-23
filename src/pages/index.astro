@@ -1,17 +1,21 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import { getImage } from 'astro:assets';
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
 
 // Import homepage images
-import adamnaweb from '../images/homepage/adamnaweb.jpg';
-import ubytovani from '../images/homepage/ubytovani.jpg';
-import okoli from '../images/homepage/okoli.jpg';
-import historie from '../images/homepage/historie.jpg';
-import vylety from '../images/homepage/vylety.jpg';
+import adamnaweb from "../images/homepage/adamnaweb.jpg";
+import ubytovani from "../images/homepage/ubytovani.jpg";
+import okoli from "../images/homepage/okoli.jpg";
+import historie from "../images/homepage/historie.jpg";
+import vylety from "../images/homepage/vylety.jpg";
 
 // Generate large versions for lightbox
-const adamnawebLarge = await getImage({ src: adamnaweb, width: 800, format: 'webp' });
+const adamnawebLarge = await getImage({
+  src: adamnaweb,
+  width: 800,
+  format: "webp",
+});
 ---
 
 <Layout
@@ -26,7 +30,11 @@ const adamnawebLarge = await getImage({ src: adamnaweb, width: 800, format: 'web
   <div class="contents">
     <h2>Pension RUT</h2>
     <p>
-      <a data-lightbox-gallery="gallery-profile" class="galleryPhoto lightbox pull-left" href={adamnawebLarge.src}>
+      <a
+        data-lightbox-gallery="gallery-profile"
+        class="galleryPhoto lightbox pull-left"
+        href={adamnawebLarge.src}
+      >
         <Image
           src={adamnaweb}
           alt="Adam Forman"
@@ -36,10 +44,18 @@ const adamnawebLarge = await getImage({ src: adamnaweb, width: 800, format: 'web
           format="webp"
         />
       </a>
-      Pension Rut, pro mne místo setkávání generací. A to nejen našich hostů, ale i naší rodiny. V roce 1926 tento dům postavili moji praprarodiče. Vychovali tu své tři syny, aby i ti se sem mohli vracet se svými dětmi. A já tu také vyrostl. Možná srostl. A je pro mne ctí spravovat tento dům a vítat tu již jako čtvrtá generace naše hosty.
+      Pension Rut, pro mne místo setkávání generací. A to nejen našich hostů, ale
+      i naší rodiny. V roce 1926 tento dům postavili moji praprarodiče. Vychovali
+      tu své tři syny, aby i ti se sem mohli vracet se svými dětmi. A já tu také
+      vyrostl. Možná srostl. A je pro mne ctí spravovat tento dům a vítat tu již
+      jako čtvrtá generace naše hosty.
     </p>
     <p>
-      Je to genius loci spíš než cokoliv jiného. Výhledy a příroda s osobitým charakterem. Je to východ slunce nad protějším břehem i večery na baru na terase nad jezerem. Jsou to hvězdy nad hladinou a vůně borovic. Je to klid jen kousek od Prahy. Oáza uprostřed turistického místa. Jsem hrdý, že tu můžu být a že se o to mohu podělit.
+      Je to genius loci spíš než cokoliv jiného. Výhledy a příroda s osobitým
+      charakterem. Je to východ slunce nad protějším břehem i večery na baru na
+      terase nad jezerem. Jsou to hvězdy nad hladinou a vůně borovic. Je to klid
+      jen kousek od Prahy. Oáza uprostřed turistického místa. Jsem hrdý, že tu
+      můžu být a že se o to mohu podělit.
     </p>
     <p class="pull-right">Adam Forman</p>
     <div class="clearfix"></div>
@@ -50,7 +66,11 @@ const adamnawebLarge = await getImage({ src: adamnaweb, width: 800, format: 'web
     <hr />
     <div class="row-fluid">
       <div class="span6">
-        <a data-lightbox-gallery="gallery" class="galleryPhoto" href="/ubytovani">
+        <a
+          data-lightbox-gallery="gallery"
+          class="galleryPhoto"
+          href="/ubytovani"
+        >
           <Image
             src={ubytovani}
             alt="Ubytování v pensionu"
@@ -61,7 +81,11 @@ const adamnawebLarge = await getImage({ src: adamnaweb, width: 800, format: 'web
           />
         </a>
         <h4><a href="/ubytovani">Pension RUT - ubytování</a></h4>
-        <p>Pension se nachází v lázeňském městečku Staré Splavy, které jsou známé ozdravným vzduchem. Jedinečnost objektu je mimo jiné dána jeho romantickým umístěním nad Máchovým jezerem...</p>
+        <p>
+          Pension se nachází v lázeňském městečku Staré Splavy, které jsou známé
+          ozdravným vzduchem. Jedinečnost objektu je mimo jiné dána jeho
+          romantickým umístěním nad Máchovým jezerem...
+        </p>
       </div>
       <div class="span6">
         <a data-lightbox-gallery="gallery" class="galleryPhoto" href="/okoli">
@@ -75,12 +99,20 @@ const adamnawebLarge = await getImage({ src: adamnaweb, width: 800, format: 'web
           />
         </a>
         <h4><a href="/okoli">Pension RUT - okolí</a></h4>
-        <p>Idylická krajina Máchova jezera nabízí pěší procházky, túry, cyklistické trasy a výlety do zajímavých destinací – hrady Bezděz, Houska a Kokořín, zřícenina Ralsko...</p>
+        <p>
+          Idylická krajina Máchova jezera nabízí pěší procházky, túry,
+          cyklistické trasy a výlety do zajímavých destinací – hrady Bezděz,
+          Houska a Kokořín, zřícenina Ralsko...
+        </p>
       </div>
     </div>
     <div class="row-fluid">
       <div class="span6">
-        <a data-lightbox-gallery="gallery" class="galleryPhoto" href="/historie">
+        <a
+          data-lightbox-gallery="gallery"
+          class="galleryPhoto"
+          href="/historie"
+        >
           <Image
             src={historie}
             alt="Historie pensionu"
@@ -91,7 +123,11 @@ const adamnawebLarge = await getImage({ src: adamnaweb, width: 800, format: 'web
           />
         </a>
         <h4><a href="/historie">Pension RUT - historie</a></h4>
-        <p>Staré Splavy - Rodiče slavného režiséra byli průkopníky turismu u Máchova jezera, postavili tu první český pension. Rodinný klenot na břehu jezera provozuje rodina Miloše Formana dodnes.</p>
+        <p>
+          Staré Splavy - Rodiče slavného režiséra byli průkopníky turismu u
+          Máchova jezera, postavili tu první český pension. Rodinný klenot na
+          břehu jezera provozuje rodina Miloše Formana dodnes.
+        </p>
       </div>
       <div class="span6">
         <a data-lightbox-gallery="gallery" class="galleryPhoto" href="/vylety">
@@ -105,7 +141,11 @@ const adamnawebLarge = await getImage({ src: adamnaweb, width: 800, format: 'web
           />
         </a>
         <h4><a href="/vylety">Pension RUT - výlety</a></h4>
-        <p>Staré Splavy - Rodiče slavného režiséra byli průkopníky turismu u Máchova jezera, postavili tu první český pension. Rodinný klenot na břehu jezera provozuje rodina Miloše Formana dodnes.</p>
+        <p>
+          Staré Splavy - Rodiče slavného režiséra byli průkopníky turismu u
+          Máchova jezera, postavili tu první český pension. Rodinný klenot na
+          břehu jezera provozuje rodina Miloše Formana dodnes.
+        </p>
       </div>
     </div>
   </div>

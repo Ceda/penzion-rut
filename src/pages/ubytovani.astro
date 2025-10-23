@@ -1,33 +1,72 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import { getImage } from 'astro:assets';
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
 
-const allImages = import.meta.glob<{ default: ImageMetadata }>('../images/galerie/*.{jpg,JPG}', { eager: true });
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  "../images/galerie/*.{jpg,JPG}",
+  { eager: true }
+);
 
 const getImageByName = (name: string) => {
   const path = `../images/galerie/${name}`;
   return allImages[path]?.default;
 };
 
-const mainImage = getImageByName('DSC_6146.JPG');
+const mainImage = getImageByName("DSC_6146.JPG");
 
 const ubytovaniImages = [
-  'DSC1421_hdr_a.jpg', 'DSC_6136.jpg', 'DSC_6152.jpg', 'DSC_5041.jpg',
-  'DSC_5037.jpg', 'DSC_4757.JPG', 'DSC_6146.JPG', 'DSC_6151.jpg',
-  'DSC_6449.JPG', 'DSC_6450.JPG', 'DSC_6148.jpg', 'DSC_6139.jpg',
-  'DSC_6458.JPG', 'DSC_6460.JPG', 'DSC_6470.JPG', 'DSC_6473.JPG',
-  'IMG_1858.JPG', 'DSC_6471.JPG', 'DSC_4746.JPG', 'IMG_5861.JPG',
-  'pokoj_f.JPG', 'Pokoje_8643.jpg', 'Pokoje_8674.jpg', 'Pokoje_8675.jpg',
-  'Pokoje_8677.jpg', 'pokoj_a.JPG', 'Pokoje_8651.jpg', 'Pokoje_8673.jpg',
-  'Pokoje_8687.jpg', 'Pokoje_8688.jpg', 'Pokoje_8690.jpg', 'Pokoje_8695.jpg',
-  'Pokoje_8696.jpg', 'pokoj_e.jpg', 'pokoj_c.JPG', 'pokoj_g.JPG',
-  'DSC_4863.JPG', 'DSC_5046.JPG'
-].map(name => getImageByName(name)).filter(Boolean);
+  "DSC1421_hdr_a.jpg",
+  "DSC_6136.jpg",
+  "DSC_6152.jpg",
+  "DSC_5041.jpg",
+  "DSC_5037.jpg",
+  "DSC_4757.JPG",
+  "DSC_6146.JPG",
+  "DSC_6151.jpg",
+  "DSC_6449.JPG",
+  "DSC_6450.JPG",
+  "DSC_6148.jpg",
+  "DSC_6139.jpg",
+  "DSC_6458.JPG",
+  "DSC_6460.JPG",
+  "DSC_6470.JPG",
+  "DSC_6473.JPG",
+  "IMG_1858.JPG",
+  "DSC_6471.JPG",
+  "DSC_4746.JPG",
+  "IMG_5861.JPG",
+  "pokoj_f.JPG",
+  "Pokoje_8643.jpg",
+  "Pokoje_8674.jpg",
+  "Pokoje_8675.jpg",
+  "Pokoje_8677.jpg",
+  "pokoj_a.JPG",
+  "Pokoje_8651.jpg",
+  "Pokoje_8673.jpg",
+  "Pokoje_8687.jpg",
+  "Pokoje_8688.jpg",
+  "Pokoje_8690.jpg",
+  "Pokoje_8695.jpg",
+  "Pokoje_8696.jpg",
+  "pokoj_e.jpg",
+  "pokoj_c.JPG",
+  "pokoj_g.JPG",
+  "DSC_4863.JPG",
+  "DSC_5046.JPG",
+]
+  .map((name) => getImageByName(name))
+  .filter(Boolean);
 
-const mainImageLarge = await getImage({ src: mainImage, width: 1200, format: 'webp' });
+const mainImageLarge = await getImage({
+  src: mainImage,
+  width: 1200,
+  format: "webp",
+});
 const ubytovaniLarge = await Promise.all(
-  ubytovaniImages.map(img => getImage({ src: img, width: 1200, format: 'webp' }))
+  ubytovaniImages.map((img) =>
+    getImage({ src: img, width: 1200, format: "webp" })
+  )
 );
 ---
 
@@ -37,7 +76,9 @@ const ubytovaniLarge = await Promise.all(
   keywords="ubytování Máchovo jezero, pokoje Staré Splavy, apartmány jezero, pension s balkónem, ubytování výhled na jezero, dvoulůžkové pokoje, apartmány Máchovo jezero"
 >
   <div id="crumbs">
-    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/ubytovani">Ubytování</a>
+    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/ubytovani"
+      >Ubytování</a
+    >
   </div>
 
   <div class="contents">
@@ -58,38 +99,48 @@ const ubytovaniLarge = await Promise.all(
           class="img-responsive"
         />
       </a>
-      Pension se nachází v lázeňském městečku Staré Splavy, které jsou známé ozdravným vzduchem. Jedinečnost objektu
-      je mimo jiné dána jeho romantickým umístěním nad Máchovým jezerem s výhledem na vodní plochu a protilehlé
-      borové břehy a také přímým přístupem do jezera za okrasnou zahradou a úzkým pásem lesa. Velká písečná pláž je
-      vzdálena tři minuty chůze lesní cestou nebo příjemnou krátkou procházkou podél vody.
+      Pension se nachází v lázeňském městečku Staré Splavy, které jsou známé ozdravným
+      vzduchem. Jedinečnost objektu je mimo jiné dána jeho romantickým umístěním
+      nad Máchovým jezerem s výhledem na vodní plochu a protilehlé borové břehy a
+      také přímým přístupem do jezera za okrasnou zahradou a úzkým pásem lesa. Velká
+      písečná pláž je vzdálena tři minuty chůze lesní cestou nebo příjemnou krátkou
+      procházkou podél vody.
     </p>
     <p>
-      Maximální kapacita pensionu je třicet tři lůžek v devíti dvoulůžkových a třílůžkových pokojích, nebo čtyřech
-      apartmánech. Převážná část pokojů má otevřené nebo zasklené balkóny. Pro hosty je k dispozici celodenně
-      otevřený bar, jídelna, místnost s krbem, tři terasy, herna pro děti, venkovní pískoviště se skluzavkou a
-      houpačkou.
+      Maximální kapacita pensionu je třicet tři lůžek v devíti dvoulůžkových a
+      třílůžkových pokojích, nebo čtyřech apartmánech. Převážná část pokojů má
+      otevřené nebo zasklené balkóny. Pro hosty je k dispozici celodenně
+      otevřený bar, jídelna, místnost s krbem, tři terasy, herna pro děti,
+      venkovní pískoviště se skluzavkou a houpačkou.
     </p>
     <p>
-      Uzavřené skupiny (např. jednání nebo výjezdní zasedání) mohou využít salonek pro dvacet lidí. Celý vnitřní
-      prostor budovy je nekuřácký. Domácí zvířata nejsou povolena.
+      Uzavřené skupiny (např. jednání nebo výjezdní zasedání) mohou využít
+      salonek pro dvacet lidí. Celý vnitřní prostor budovy je nekuřácký. Domácí
+      zvířata nejsou povolena.
     </p>
   </div>
 
   <h2>Fotografie ubytování pensionu RUT</h2>
   <div class="photoGallery">
-    {ubytovaniImages.map((img, i) => (
-      <a href={ubytovaniLarge[i].src} class="galleryPhoto lightbox" data-lightbox-gallery="gallery">
-        <Image
-          src={img}
-          alt="Ubytování"
-          width={150}
-          height={100}
-          widths={[150, 300]}
-          sizes="150px"
-          format="webp"
-          fit="cover"
-        />
-      </a>
-    ))}
+    {
+      ubytovaniImages.map((img, i) => (
+        <a
+          href={ubytovaniLarge[i].src}
+          class="galleryPhoto lightbox"
+          data-lightbox-gallery="gallery"
+        >
+          <Image
+            src={img}
+            alt="Ubytování"
+            width={150}
+            height={100}
+            widths={[150, 300]}
+            sizes="150px"
+            format="webp"
+            fit="cover"
+          />
+        </a>
+      ))
+    }
   </div>
 </Layout>
