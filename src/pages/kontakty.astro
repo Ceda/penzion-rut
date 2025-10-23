@@ -3,127 +3,151 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <div id="body">
-    <div class="container">
-      <div class="row-fluid">
-        <div class="span8">
-          <div id="crumbs">
-    Právě se nacházíte: <a href="/">Hlavní stánka </a> / <a href="/kontakty">Kontakty</a></div>
+  <div id="crumbs">
+    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/kontakty">Kontakty</a>
+  </div>
 
-<h2>Pension RUT kontaktní informace</h2>
-			
-        <script type="text/javascript">
-            function initialize() {
-                var center = new google.maps.LatLng(50.58707513286003,14.638432025909424);
-                var myOptions = {
-					zoom: 14,
-                    center: center,
-                    scrollwheel: false,
-                }
-                var map = new google.maps.Map(document.getElementById("map3"), myOptions);
+  <h2>Pension RUT kontaktní informace</h2>
 
-				map.setMapTypeId(google.maps.MapTypeId['TERRAIN']);
+  <script type="text/javascript">
+    function initialize() {
+      var center = new google.maps.LatLng(50.58707513286003, 14.638432025909424);
+      var myOptions = {
+        zoom: 14,
+        center: center,
+        scrollwheel: false,
+      };
+      var map = new google.maps.Map(document.getElementById('map3'), myOptions);
+      map.setMapTypeId(google.maps.MapTypeId['TERRAIN']);
 
-				
-                var beachMarker = new google.maps.Marker({
-                    position: center,
-                    map: map
-                });
-				
-				            }
+      var beachMarker = new google.maps.Marker({
+        position: center,
+        map: map,
+      });
+    }
+  </script>
 
-        </script>
- 
-		<div class="mapcliping">
-			<div id="map3"  style="width:620px; height:200px"></div>
-			<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyCZcO7TRAoI0li3roah9_d6cSbBCuCHNJ0&callback=initialize"></script>
-		</div><div class="contents ">
-		<div class="row-fluid">
-<div class="span6">
-<h4>Adresa</h4>
-<table>
-<tbody>
-<tr>
-<td><b>Pension Rut Formanovi</b></td>
-</tr>
-<tr>
-<td>Lázeňský Vrch 97</td>
-</tr>
-<tr>
-<td>471 63,  Staré Splavy</td>
-</tr>
-<tr>
-<td><b>GPS:</b> 50°34' 25.64'' N, 14°39' 6.52'' E</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="span6">
-<h4>Kontaktní informace</h4>
-<table>
-<tbody>
-<tr>
-<td><br /> <b>Tel:</b> +420 487 873 213</td>
-</tr>
-<tr>
-<td><b><b>Tel</b>:</b> +420 724 042 508</td>
-</tr>
-<tr>
-<td><b>Email:</b> <a href="mailto:recepce@pensionrut.cz">recepce@pensionrut.cz</a></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="span12">
-<p class="claim">Pension je v provozu od Velikonoc do listopadu</p>
-</div>
-</div>	</div>
-<div>
+  <div class="mapcliping">
+    <div id="map3" style="width:620px; height:200px"></div>
+    <script
+      type="text/javascript"
+      src="//maps.googleapis.com/maps/api/js?key=AIzaSyCZcO7TRAoI0li3roah9_d6cSbBCuCHNJ0&callback=initialize"
+    ></script>
+  </div>
 
-</div>
-<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-<script src="https://www.google.com/recaptcha/api.js?render=6LcQvLkkAAAAAGpaAsyC8pbql0ji3UkAr73gFSDS"></script>
-
-<div id="form-1">
-  <form action="/form/forms/sendform" class="ajax-form" data-action="/form/forms/send/1" id="FormSendformForm" method="post" accept-charset="utf-8"><div style="display:none;"><input type="hidden" name="_method" value="POST" /></div>
-  <fieldset>
-            <legend>Kontaktní formulář</legend>
-      
-    <div class="input text"><label for="FormJmenoAPrijmeni1">Jméno a příjmení: </label><input name="data[Form][Jmeno_a_prijmeni1]" type="text" placeholder="Jméno a příjmení" required="1" id="FormJmenoAPrijmeni1" /></div>      <div class="input text"><label for="FormMailfrom">E-mail: </label><input name="data[Form][mailfrom]" type="text" placeholder="E-mail" required="1" id="FormMailfrom" /></div>      <div class="input text"><label for="FormTelefoniCislo20">Telefoní číslo: </label><input name="data[Form][Telefoni_cislo20]" type="text" placeholder="Telefoní číslo" id="FormTelefoniCislo20" /></div>      <div class="input textarea"><label for="FormVaseZprava3">Vaše zpráva: </label><textarea name="data[Form][Vase_zprava3]" cols="30" rows="6" id="FormVaseZprava3" ></textarea></div>      
-	<script type="text/javascript" src="/js/form.js"></script>
-          </fieldset>
-    <input type="hidden" name="data[Form][g-recaptcha-response]" id="g-recaptcha-response" /><div class="submit"><input class="btn btn-large" type="submit" value="Odeslat" /></div></form>  </div>
-  
-    <script type="text/javascript">
-  $(document).ready(function(){
-    
-    });
-    </script>
-<script>
-  grecaptcha.ready(function() {
-    grecaptcha.execute('6LcQvLkkAAAAAGpaAsyC8pbql0ji3UkAr73gFSDS', { action: 'submit' }).then(function(token) {
-      document.getElementById('g-recaptcha-response').value = token;
-    });
-  });
-</script>
-        </div>
-
-        <!-- Aktuality
-          ============================== -->
-
-          <div class="span4">
-            <h3>Aktuality<small> od Máchova jezera</small></h3>
-            <div style="height: 2px"></div>
-            <!-- <behold-widget feed-id="gfHbECjUaFHjz0idR6y7"></behold-widget> -->
-            <behold-widget feed-id="CvncMIYMk2n1PeSj4r20"></behold-widget>
-            <div style="height: 5px"></div>
-            <h3>Máchovo jezero <small>počasí
-            </small></h3>
-           <div class="weather_info">
-	     <p class="weather-col"><img title="déšť" src="https://openweathermap.org/img/wn/10d@2x.png" /><span class="date"><strong>čtvrtek</strong> <strong>23 říj</strong> </span><span class="info"><span>Min:&nbsp;8°C</span> <span>Max:&nbsp;16°C</span></span></p><p class="weather-col"><img title="slabý déšť" src="https://openweathermap.org/img/wn/10d@2x.png" /><span class="date"><strong>pátek</strong> <strong>24 říj</strong> </span><span class="info"><span>Min:&nbsp;5°C</span> <span>Max:&nbsp;9°C</span></span></p><p class="weather-col"><img title="slabý déšť" src="https://openweathermap.org/img/wn/10d@2x.png" /><span class="date"><strong>sobota</strong> <strong>25 říj</strong> </span><span class="info"><span>Min:&nbsp;5°C</span> <span>Max:&nbsp;8°C</span></span></p>
-           </div>
-	  </div>
-        </div>
+  <div class="contents">
+    <div class="row-fluid">
+      <div class="span6">
+        <h4>Adresa</h4>
+        <table>
+          <tbody>
+            <tr>
+              <td><b>Pension Rut Formanovi</b></td>
+            </tr>
+            <tr>
+              <td>Lázeňský Vrch 97</td>
+            </tr>
+            <tr>
+              <td>471 63, Staré Splavy</td>
+            </tr>
+            <tr>
+              <td><b>GPS:</b> 50°34' 25.64'' N, 14°39' 6.52'' E</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="span6">
+        <h4>Kontaktní informace</h4>
+        <table>
+          <tbody>
+            <tr>
+              <td><br /><b>Tel:</b> +420 487 873 213</td>
+            </tr>
+            <tr>
+              <td><b>Tel:</b> +420 724 042 508</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Email:</b> <a href="mailto:recepce@pensionrut.cz">recepce@pensionrut.cz</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="span12">
+        <p class="claim">Pension je v provozu od Velikonoc do listopadu</p>
       </div>
     </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LcQvLkkAAAAAGpaAsyC8pbql0ji3UkAr73gFSDS"></script>
+
+  <div id="form-1">
+    <form
+      action="/form/forms/sendform"
+      class="ajax-form"
+      data-action="/form/forms/send/1"
+      id="FormSendformForm"
+      method="post"
+      accept-charset="utf-8"
+    >
+      <div style="display:none;"><input type="hidden" name="_method" value="POST" /></div>
+      <fieldset>
+        <legend>Kontaktní formulář</legend>
+        <div class="input text">
+          <label for="FormJmenoAPrijmeni1">Jméno a příjmení:</label>
+          <input
+            name="data[Form][Jmeno_a_prijmeni1]"
+            type="text"
+            placeholder="Jméno a příjmení"
+            required="1"
+            id="FormJmenoAPrijmeni1"
+          />
+        </div>
+        <div class="input text">
+          <label for="FormMailfrom">E-mail:</label>
+          <input
+            name="data[Form][mailfrom]"
+            type="text"
+            placeholder="E-mail"
+            required="1"
+            id="FormMailfrom"
+          />
+        </div>
+        <div class="input text">
+          <label for="FormTelefoniCislo20">Telefoní číslo:</label>
+          <input
+            name="data[Form][Telefoni_cislo20]"
+            type="text"
+            placeholder="Telefoní číslo"
+            id="FormTelefoniCislo20"
+          />
+        </div>
+        <div class="input textarea">
+          <label for="FormVaseZprava3">Vaše zpráva:</label>
+          <textarea name="data[Form][Vase_zprava3]" cols="30" rows="6" id="FormVaseZprava3"></textarea>
+        </div>
+        <script type="text/javascript" src="/js/form.js"></script>
+      </fieldset>
+      <input type="hidden" name="data[Form][g-recaptcha-response]" id="g-recaptcha-response" />
+      <div class="submit"><input class="btn btn-large" type="submit" value="Odeslat" /></div>
+    </form>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function () {});
+  </script>
+  <script is:inline>
+    if (typeof grecaptcha !== 'undefined') {
+      grecaptcha.ready(function () {
+        grecaptcha.execute('6LcQvLkkAAAAAGpaAsyC8pbql0ji3UkAr73gFSDS', { action: 'submit' }).then(function (token) {
+          const element = document.getElementById('g-recaptcha-response');
+          if (element) {
+            element.value = token;
+          }
+        });
+      });
+    }
+  </script>
 </Layout>

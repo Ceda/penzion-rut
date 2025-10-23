@@ -109,7 +109,30 @@
     </div>
   </div>
 
-  <slot />
+  <!-- Content
+  ============================== -->
+  <div id="body">
+    <div class="container">
+      <div class="row-fluid">
+        <div class="span8">
+          <slot />
+        </div>
+
+        <!-- Aktuality
+        ============================== -->
+        <div class="span4">
+          <h3>Aktuality<small> od Máchova jezera</small></h3>
+          <div style="height: 2px"></div>
+          <behold-widget feed-id="CvncMIYMk2n1PeSj4r20"></behold-widget>
+          <div style="height: 5px"></div>
+          <h3>Máchovo jezero <small>počasí</small></h3>
+          <div class="weather_info">
+            <p class="weather-col"><img title="déšť" src="https://openweathermap.org/img/wn/10d@2x.png" /><span class="date"><strong>čtvrtek</strong> <strong>23 říj</strong> </span><span class="info"><span>Min:&nbsp;8°C</span> <span>Max:&nbsp;16°C</span></span></p><p class="weather-col"><img title="slabý déšť" src="https://openweathermap.org/img/wn/10d@2x.png" /><span class="date"><strong>pátek</strong> <strong>24 říj</strong> </span><span class="info"><span>Min:&nbsp;5°C</span> <span>Max:&nbsp;9°C</span></span></p><p class="weather-col"><img title="slabý déšť" src="https://openweathermap.org/img/wn/10d@2x.png" /><span class="date"><strong>sobota</strong> <strong>25 říj</strong> </span><span class="info"><span>Min:&nbsp;5°C</span> <span>Max:&nbsp;8°C</span></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer
   ============================== -->
