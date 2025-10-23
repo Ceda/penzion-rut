@@ -1,5 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
+
+// Import homepage images
+import adamnaweb from '../images/homepage/adamnaweb.jpg';
+import ubytovani from '../images/homepage/ubytovani.jpg';
+import okoli from '../images/homepage/okoli.jpg';
+import historie from '../images/homepage/historie.jpg';
+import vylety from '../images/homepage/vylety.jpg';
+
+// Generate large versions for lightbox
+const adamnawebLarge = await getImage({ src: adamnaweb, width: 800, format: 'webp' });
 ---
 
 <Layout>
@@ -10,8 +22,15 @@ import Layout from '../layouts/Layout.astro';
   <div class="contents">
     <h2>Pension RUT</h2>
     <p>
-      <a data-lightbox-gallery="gallery-profile" class="galleryPhoto lightbox pull-left" href="/theme/pensionrut/img/uploads/thumb/large/adamnaweb.jpg?v1">
-        <img width="130" src="/theme/pensionrut/img/uploads/thumb/medium/adamnaweb.jpg?v1" />
+      <a data-lightbox-gallery="gallery-profile" class="galleryPhoto lightbox pull-left" href={adamnawebLarge.src}>
+        <Image
+          src={adamnaweb}
+          alt="Adam Forman"
+          width={130}
+          widths={[130, 260]}
+          sizes="130px"
+          format="webp"
+        />
       </a>
       Pension Rut, pro mne místo setkávání generací. A to nejen našich hostů, ale i naší rodiny. V roce 1926 tento dům postavili moji praprarodiče. Vychovali tu své tři syny, aby i ti se sem mohli vracet se svými dětmi. A já tu také vyrostl. Možná srostl. A je pro mne ctí spravovat tento dům a vítat tu již jako čtvrtá generace naše hosty.
     </p>
@@ -28,14 +47,28 @@ import Layout from '../layouts/Layout.astro';
     <div class="row-fluid">
       <div class="span6">
         <a data-lightbox-gallery="gallery" class="galleryPhoto" href="/ubytovani">
-          <img width="250" src="/theme/pensionrut/img/ubytovani.jpg" />
+          <Image
+            src={ubytovani}
+            alt="Ubytování v pensionu"
+            width={250}
+            widths={[250, 500]}
+            sizes="(max-width: 768px) 100vw, 250px"
+            format="webp"
+          />
         </a>
         <h4><a href="/ubytovani">Pension RUT - ubytování</a></h4>
         <p>Pension se nachází v lázeňském městečku Staré Splavy, které jsou známé ozdravným vzduchem. Jedinečnost objektu je mimo jiné dána jeho romantickým umístěním nad Máchovým jezerem...</p>
       </div>
       <div class="span6">
         <a data-lightbox-gallery="gallery" class="galleryPhoto" href="/okoli">
-          <img width="250" src="/theme/pensionrut/img/okoli.jpg" />
+          <Image
+            src={okoli}
+            alt="Okolí pensionu"
+            width={250}
+            widths={[250, 500]}
+            sizes="(max-width: 768px) 100vw, 250px"
+            format="webp"
+          />
         </a>
         <h4><a href="/okoli">Pension RUT - okolí</a></h4>
         <p>Idylická krajina Máchova jezera nabízí pěší procházky, túry, cyklistické trasy a výlety do zajímavých destinací – hrady Bezděz, Houska a Kokořín, zřícenina Ralsko...</p>
@@ -44,14 +77,28 @@ import Layout from '../layouts/Layout.astro';
     <div class="row-fluid">
       <div class="span6">
         <a data-lightbox-gallery="gallery" class="galleryPhoto" href="/historie">
-          <img width="250" src="/theme/pensionrut/img/historie.jpg" />
+          <Image
+            src={historie}
+            alt="Historie pensionu"
+            width={250}
+            widths={[250, 500]}
+            sizes="(max-width: 768px) 100vw, 250px"
+            format="webp"
+          />
         </a>
         <h4><a href="/historie">Pension RUT - historie</a></h4>
         <p>Staré Splavy - Rodiče slavného režiséra byli průkopníky turismu u Máchova jezera, postavili tu první český pension. Rodinný klenot na břehu jezera provozuje rodina Miloše Formana dodnes.</p>
       </div>
       <div class="span6">
         <a data-lightbox-gallery="gallery" class="galleryPhoto" href="/vylety">
-          <img width="250" src="/theme/pensionrut/img/vylety.jpg" />
+          <Image
+            src={vylety}
+            alt="Výlety v okolí"
+            width={250}
+            widths={[250, 500]}
+            sizes="(max-width: 768px) 100vw, 250px"
+            format="webp"
+          />
         </a>
         <h4><a href="/vylety">Pension RUT - výlety</a></h4>
         <p>Staré Splavy - Rodiče slavného režiséra byli průkopníky turismu u Máchova jezera, postavili tu první český pension. Rodinný klenot na břehu jezera provozuje rodina Miloše Formana dodnes.</p>

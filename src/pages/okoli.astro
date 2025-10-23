@@ -1,5 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
+
+// Import obrázků
+const allImages = import.meta.glob<{ default: ImageMetadata }>('../images/galerie/*.{jpg,JPG}', { eager: true });
+
+const getImageByName = (name: string) => {
+  const path = `../images/galerie/${name}`;
+  return allImages[path]?.default;
+};
+
+// Obrázky pro stránku
+const bezdez = getImageByName('bezdez-0.jpg');
+
+// Galerie okolí
+const okoliImages = [
+  'bezdez-0.jpg', 'jezero-0.jpg', 'parnik_Hynek-0.jpg', 'plaz-0.jpg',
+  'DSC_4982.jpg', 'okoli-0.jpg', 'DSC_5030.jpg', 'DSC_4804.jpg',
+  'pohled_z_okna-0.jpg', 'DSC_4809.jpg'
+].map(name => getImageByName(name)).filter(Boolean);
+
+const bezdezLarge = await getImage({ src: bezdez, width: 1200, format: 'webp' });
+
+const okoliLarge = await Promise.all(
+  okoliImages.map(img => getImage({ src: img, width: 1200, format: 'webp' }))
+);
 ---
 
 <Layout>
@@ -13,9 +39,17 @@ import Layout from '../layouts/Layout.astro';
       <a
         data-lightbox-gallery="gallery"
         class="galleryPhoto lightbox pull-left"
-        href="/theme/pensionrut/img/uploads/thumb/large/bezdez-0.jpg"
+        href={bezdezLarge.src}
       >
-        <img src="/theme/pensionrut/img/uploads/thumb/medium/bezdez-0.jpg" width="250" />
+        <Image
+          src={bezdez}
+          alt="Bezděz"
+          width={250}
+          widths={[250, 500]}
+          sizes="250px"
+          format="webp"
+          class="img-responsive"
+        />
       </a>
       Idylická krajina <b>Máchova jezera</b> nabízí pěší <b>procházky</b>, túry, <b>cyklistické trasy</b> a výlety do <b
         >zajímavých míst</b
@@ -35,6 +69,19 @@ import Layout from '../layouts/Layout.astro';
 
   <h2>Okolí - Máchovo jezero</h2>
   <div class="photoGallery">
-    <a href="/theme/pensionrut/img/uploads/thumb/large/bezdez-0.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/bezdez-0.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/jezero-0.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/jezero-0.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/parnik_Hynek-0.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/parnik_Hynek-0.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/plaz-0.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/plaz-0.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_4982.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_4982.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/okoli-0.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/okoli-0.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_5030.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_5030.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_4804.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_4804.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/pohled_z_okna-0.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/pohled_z_okna-0.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_4809.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_4809.jpg" alt="" /></a>
+    {okoliImages.map((img, i) => (
+      <a href={okoliLarge[i].src} class="galleryPhoto lightbox" data-lightbox-gallery="gallery">
+        <Image
+          src={img}
+          alt="Okolí Máchova jezera"
+          width={150}
+          height={100}
+          widths={[150, 300]}
+          sizes="150px"
+          format="webp"
+          fit="cover"
+        />
+      </a>
+    ))}
   </div>
 </Layout>

@@ -1,5 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
+import regataImg from '../images/regata/regata-2015.jpg';
+
+const allImages = import.meta.glob<{ default: ImageMetadata }>('../images/galerie/*.{jpg,JPG}', { eager: true });
+
+const getImageByName = (name: string) => {
+  const path = `../images/galerie/${name}`;
+  return allImages[path]?.default;
+};
+
+// Regata galerie
+const regataImages = [
+  'DSC_9409.jpg', 'DSC_9443.jpg', 'DSC_9469.jpg', 'DSC_9474.jpg',
+  'DSC_9405.JPG', 'DSC_9401_Vltava.jpg', 'DSC_9445.JPG', 'DSC_9455.JPG',
+  'DSC_9473.JPG', 'DSC_9447.JPG', 'DSC_9491.JPG', 'DSC_9510.JPG',
+  'DSC_9535.JPG', 'DSC_9347.JPG', 'DSC_9393.JPG', 'DSC_9498.JPG'
+].map(name => getImageByName(name)).filter(Boolean);
+
+const regataLarge = await Promise.all(
+  regataImages.map(img => getImage({ src: img, width: 1200, format: 'webp' }))
+);
 ---
 
 <Layout>
@@ -24,12 +46,13 @@ import Layout from '../layouts/Layout.astro';
       lidí, německá televizní stanice ARD i třeba prázdninový reportér Lubomír Smatana s přímým vstupem do
       Radiožurnálu.
     </p>
-    <p>
-      <img
-        width="300"
-        height="159"
-        src="/theme/pensionrut/img/uploads/regata-2015.jpg"
-        style="margin: auto; display: block;"
+    <p style="text-align: center;">
+      <Image
+        src={regataImg}
+        alt="Regata 2015"
+        width={300}
+        height={159}
+        format="webp"
       />
     </p>
     <p class="claim">
@@ -101,6 +124,19 @@ import Layout from '../layouts/Layout.astro';
 
   <h2>Regata Rut Classic - Fotogalerie</h2>
   <div class="photoGallery">
-    <a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9409.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9409.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9443.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9443.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9469.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9469.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9474.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9474.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9405.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9405.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9401_Vltava.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9401_Vltava.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9445.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9445.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9455.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9455.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9473.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9473.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9447.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9447.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9491.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9491.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9510.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9510.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9535.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9535.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9347.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9347.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9393.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9393.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_9498.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_9498.JPG" alt="" /></a>
+    {regataImages.map((img, i) => (
+      <a href={regataLarge[i].src} class="galleryPhoto lightbox" data-lightbox-gallery="gallery">
+        <Image
+          src={img}
+          alt="Regata Rut Classic"
+          width={150}
+          height={100}
+          widths={[150, 300]}
+          sizes="150px"
+          format="webp"
+          fit="cover"
+        />
+      </a>
+    ))}
   </div>
 </Layout>

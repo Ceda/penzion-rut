@@ -1,5 +1,34 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
+
+const allImages = import.meta.glob<{ default: ImageMetadata }>('../images/galerie/*.{jpg,JPG}', { eager: true });
+
+const getImageByName = (name: string) => {
+  const path = `../images/galerie/${name}`;
+  return allImages[path]?.default;
+};
+
+const mainImage = getImageByName('DSC_6146.JPG');
+
+const ubytovaniImages = [
+  'DSC1421_hdr_a.jpg', 'DSC_6136.jpg', 'DSC_6152.jpg', 'DSC_5041.jpg',
+  'DSC_5037.jpg', 'DSC_4757.JPG', 'DSC_6146.JPG', 'DSC_6151.jpg',
+  'DSC_6449.JPG', 'DSC_6450.JPG', 'DSC_6148.jpg', 'DSC_6139.jpg',
+  'DSC_6458.JPG', 'DSC_6460.JPG', 'DSC_6470.JPG', 'DSC_6473.JPG',
+  'IMG_1858.JPG', 'DSC_6471.JPG', 'DSC_4746.JPG', 'IMG_5861.JPG',
+  'pokoj_f.JPG', 'Pokoje_8643.jpg', 'Pokoje_8674.jpg', 'Pokoje_8675.jpg',
+  'Pokoje_8677.jpg', 'pokoj_a.JPG', 'Pokoje_8651.jpg', 'Pokoje_8673.jpg',
+  'Pokoje_8687.jpg', 'Pokoje_8688.jpg', 'Pokoje_8690.jpg', 'Pokoje_8695.jpg',
+  'Pokoje_8696.jpg', 'pokoj_e.jpg', 'pokoj_c.JPG', 'pokoj_g.JPG',
+  'DSC_4863.JPG', 'DSC_5046.JPG'
+].map(name => getImageByName(name)).filter(Boolean);
+
+const mainImageLarge = await getImage({ src: mainImage, width: 1200, format: 'webp' });
+const ubytovaniLarge = await Promise.all(
+  ubytovaniImages.map(img => getImage({ src: img, width: 1200, format: 'webp' }))
+);
 ---
 
 <Layout>
@@ -13,9 +42,17 @@ import Layout from '../layouts/Layout.astro';
       <a
         data-lightbox-gallery="gallery"
         class="galleryPhoto lightbox pull-left"
-        href="/theme/pensionrut/img/uploads/thumb/large/DSC_6146.JPG"
+        href={mainImageLarge.src}
       >
-        <img src="/theme/pensionrut/img/uploads/thumb/medium/DSC_6146.JPG" width="250" />
+        <Image
+          src={mainImage}
+          alt="Ubytování v pensionu"
+          width={250}
+          widths={[250, 500]}
+          sizes="250px"
+          format="webp"
+          class="img-responsive"
+        />
       </a>
       Pension se nachází v lázeňském městečku Staré Splavy, které jsou známé ozdravným vzduchem. Jedinečnost objektu
       je mimo jiné dána jeho romantickým umístěním nad Máchovým jezerem s výhledem na vodní plochu a protilehlé
@@ -36,6 +73,19 @@ import Layout from '../layouts/Layout.astro';
 
   <h2>Fotografie ubytování pensionu RUT</h2>
   <div class="photoGallery">
-    <a href="/theme/pensionrut/img/uploads/thumb/large/DSC1421_hdr_a.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC1421_hdr_a.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_6136.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_6136.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_6152.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_6152.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_5041.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_5041.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_5037.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_5037.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_4757.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_4757.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_6146.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_6146.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_6151.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_6151.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_6449.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_6449.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_6450.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_6450.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_6148.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_6148.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_6139.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_6139.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_6458.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_6458.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_6460.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_6460.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_6470.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_6470.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_6473.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_6473.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/IMG_1858.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/IMG_1858.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_6471.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_6471.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_4746.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_4746.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/IMG_5861.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/IMG_5861.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/pokoj_f.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/pokoj_f.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/Pokoje_8643.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/Pokoje_8643.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/Pokoje_8674.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/Pokoje_8674.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/Pokoje_8675.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/Pokoje_8675.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/Pokoje_8677.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/Pokoje_8677.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/pokoj_a.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/pokoj_a.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/Pokoje_8651.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/Pokoje_8651.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/Pokoje_8673.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/Pokoje_8673.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/Pokoje_8687.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/Pokoje_8687.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/Pokoje_8688.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/Pokoje_8688.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/Pokoje_8690.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/Pokoje_8690.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/Pokoje_8695.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/Pokoje_8695.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/Pokoje_8696.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/Pokoje_8696.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/pokoj_e.jpg" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/pokoj_e.jpg" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/pokoj_c.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/pokoj_c.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/pokoj_g.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/pokoj_g.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_4863.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_4863.JPG" alt="" /></a><a href="/theme/pensionrut/img/uploads/thumb/large/DSC_5046.JPG" class="galleryPhoto lightbox" data-lightbox-gallery="gallery"><img src="/theme/pensionrut/img/uploads/thumb/small/DSC_5046.JPG" alt="" /></a>
+    {ubytovaniImages.map((img, i) => (
+      <a href={ubytovaniLarge[i].src} class="galleryPhoto lightbox" data-lightbox-gallery="gallery">
+        <Image
+          src={img}
+          alt="Ubytování"
+          width={150}
+          height={100}
+          widths={[150, 300]}
+          sizes="150px"
+          format="webp"
+          fit="cover"
+        />
+      </a>
+    ))}
   </div>
 </Layout>

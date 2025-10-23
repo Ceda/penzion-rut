@@ -1,5 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+// Import obrázků
+import hradBezdez from '../images/vylety/hrad-bezdez.jpg';
+import hradHouska from '../images/vylety/hrad-houska.jpg';
+import zamekLemberk from '../images/vylety/zamek-lemberk.jpg';
+import zamekZakupy from '../images/vylety/zamek-zakupy.jpg';
 ---
 
 <Layout>
@@ -12,7 +19,15 @@ import Layout from '../layouts/Layout.astro';
 
     <h3>Hrad Bezděz</h3>
     <p>
-      <img src="/theme/pensionrut/img/hrad-bezdez.jpg" class="pull-left" width="250" />
+      <Image
+        src={hradBezdez}
+        alt="Hrad Bezděz"
+        width={250}
+        widths={[250, 500]}
+        sizes="250px"
+        format="webp"
+        class="pull-left"
+      />
       Královský hrad Bezděz je jednou z našich nejvýznamnějších gotických památek. Návštěvníci si mohou prohlédnout
       královský palác s unikátní kaplí a množstvím gotických architektonických detailů, purkrabský palác a další
       části hradu. Přístupná je také Velká věž s rytířskou síní v nejvyšším podlaží a s jedinečnou vyhlídkou na široké
@@ -27,7 +42,15 @@ import Layout from '../layouts/Layout.astro';
 
     <h3>Hrad Houska</h3>
     <p>
-      <img src="/theme/pensionrut/img/hrad-houska.jpg" class="pull-left" width="250" />
+      <Image
+        src={hradHouska}
+        alt="Hrad Houska"
+        width={250}
+        widths={[250, 500]}
+        sizes="250px"
+        format="webp"
+        class="pull-left"
+      />
       Hrad Houska je díky původní gotické hradní kapli hodnocen jako středoevropský unikát.
     </p>
     <p>
@@ -51,7 +74,15 @@ import Layout from '../layouts/Layout.astro';
 
     <h3>Zámek Lemberg</h3>
     <p>
-      <img src="/theme/pensionrut/img/zamek-lemberk.jpg" class="pull-left" width="250" />
+      <Image
+        src={zamekLemberk}
+        alt="Zámek Lemberg"
+        width={250}
+        widths={[250, 500]}
+        sizes="250px"
+        format="webp"
+        class="pull-left"
+      />
       Lemberk byl původně strážním pomezním hradem na Žitavské obchodní stezce. Z původní podoby se zachovala pouze
       válcová věž, ostatní části překryly renesanční a barokní přestavby.
     </p>
@@ -67,7 +98,15 @@ import Layout from '../layouts/Layout.astro';
 
     <h3>Zámek Zákupy</h3>
     <p>
-      <img src="/theme/pensionrut/img/zamek-zakupy.jpg" class="pull-left" width="250" />
+      <Image
+        src={zamekZakupy}
+        alt="Zámek Zákupy"
+        width={250}
+        widths={[250, 500]}
+        sizes="250px"
+        format="webp"
+        class="pull-left"
+      />
       Rozlehlý zámek sloužil ve druhé polovině 19. století jako letní rezidence bývalého rakouského císaře Ferdinanda
       I.
     </p>
