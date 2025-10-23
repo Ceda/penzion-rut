@@ -440,6 +440,11 @@ const {
             autoSlideTimer: 5000,
           });
         }
+
+        // Reinicializace lightbox galerie
+        if (typeof $ !== "undefined" && $.fn.nivoLightbox) {
+          $("a.lightbox").nivoLightbox();
+        }
       });
     </script>
   </body>
