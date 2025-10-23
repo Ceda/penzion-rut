@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { ROUTES } from "../config/routes";
 ---
 
 <Layout
@@ -7,9 +8,31 @@ import Layout from "../layouts/Layout.astro";
   description="Kontaktní informace Pension RUT - Lázeňský Vrch 97, 471 63 Staré Splavy. Tel: +420 487 873 213, +420 724 042 508, Email: recepce@pensionrut.cz. GPS: 50°34'25.64''N, 14°39'6.52''E"
   keywords="kontakt Pension RUT, rezervace ubytování Máchovo jezero, telefon pension Staré Splavy, email recepce, adresa pension, GPS Staré Splavy, jak se dostat"
 >
+  <!-- Schema.org Breadcrumb markup -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Hlavní stránka",
+          "item": "https://www.pensionrut.cz/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Kontakty",
+          "item": "https://www.pensionrut.cz/kontakty"
+        }
+      ]
+    }
+  </script>
+
   <div id="crumbs">
-    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/kontakty"
-      >Kontakty</a
+    Právě se nacházíte: <a href={ROUTES.home}>Hlavní stánka</a> / <a
+      href={ROUTES.kontakty}>Kontakty</a
     >
   </div>
 

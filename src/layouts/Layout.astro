@@ -1,4 +1,8 @@
 ---
+import { ClientRouter } from "astro:transitions";
+import Nav from "../components/Nav.astro";
+import { ROUTES } from "../config/routes";
+
 interface Props {
   title?: string;
   description?: string;
@@ -13,8 +17,9 @@ const {
 ---
 
 <!doctype html>
-<html>
+<html lang="cs">
   <head>
+    <ClientRouter />
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,6 +29,106 @@ const {
     />
     <meta name="keywords" content={keywords} />
     <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content={`https://www.pensionrut.cz${Astro.url.pathname}`}
+    />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta
+      property="og:image"
+      content="https://www.pensionrut.cz/theme/pensionrut/img/header-logo.jpg"
+    />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:site_name" content="Pension RUT" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:url"
+      content={`https://www.pensionrut.cz${Astro.url.pathname}`}
+    />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta
+      name="twitter:image"
+      content="https://www.pensionrut.cz/theme/pensionrut/img/header-logo.jpg"
+    />
+
+    <!-- Canonical URL -->
+    <link
+      rel="canonical"
+      href={`https://www.pensionrut.cz${Astro.url.pathname}`}
+    />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LodgingBusiness",
+        "name": "Pension RUT",
+        "description": "První český pension na břehu Máchova jezera, který provozuje rodina Miloše Formana od roku 1926. Romantické ubytování s výhledem na jezero ve Starých Splavech.",
+        "image": "https://www.pensionrut.cz/theme/pensionrut/img/header-logo.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Lázeňský Vrch 97",
+          "addressLocality": "Staré Splavy",
+          "postalCode": "471 63",
+          "addressCountry": "CZ"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "50.573515",
+          "longitude": "14.651811"
+        },
+        "telephone": "+420487873213",
+        "email": "recepce@pensionrut.cz",
+        "url": "https://www.pensionrut.cz",
+        "priceRange": "2500-3500 Kč",
+        "starRating": {
+          "@type": "Rating",
+          "ratingValue": "4"
+        },
+        "checkinTime": "14:00",
+        "checkoutTime": "10:00",
+        "amenityFeature": [
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Free WiFi",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Breakfast included",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Lake view",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Private beach access",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Terrace",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Bar",
+            "value": true
+          }
+        ]
+      }
+    </script>
+
     <link
       rel="stylesheet"
       type="text/css"
@@ -60,21 +165,11 @@ const {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="/" class="brand">
+          <a href={ROUTES.home} class="brand">
             <img src="/theme/pensionrut/img/mini-logo.png" alt="Pension RUT" />
           </a>
           <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li><a href="/">Pension RUT</a></li><li>
-                <a href="/historie">Historie</a>
-              </li><li><a href="/ubytovani">Ubytování</a></li><li>
-                <a href="/okoli">Okolí</a>
-              </li><li><a href="/vylety">Výlety</a></li><li>
-                <a href="/cenik">Ceník</a>
-              </li><li><a href="/fotogalerie">Fotogalerie</a></li><li>
-                <a href="/kontakty">Kontakty</a>
-              </li><li><a href="/regata-rut-classic">Regata RUT Classic</a></li>
-            </ul>
+            <Nav />
           </div>
         </div>
       </div>
@@ -86,10 +181,10 @@ const {
       <div class="container">
         <div class="row-fluid">
           <div class="span6">
-            <a href="/">
+            <a href={ROUTES.home}>
               <img
                 src="/theme/pensionrut/img/header-logo.jpg"
-                alt="Header Logo"
+                alt="Penzion RUT"
                 width="435"
                 height="82"
               />
@@ -98,7 +193,7 @@ const {
           <div class="span6">
             <img
               src="/theme/pensionrut/img/header-text.jpg"
-              alt="Header Text"
+              alt="Penzion RUT"
               width="272"
               height="45"
               class="headertext"
@@ -119,88 +214,97 @@ const {
           <div class="item">
             <div class="caption">
               <span
-                ><a href="/"
+                ><a href={ROUTES.home}
                   ><strong>Pension RUT</strong> | Ubytování u Máchova jezera</a
                 ></span
               >
               <div class="bg"></div>
             </div>
-            <a href="/"
-              ><img src="/theme/pensionrut/img/galerie/terasa.jpg" alt="" /></a
+            <a href={ROUTES.home}
+              ><img
+                src="/theme/pensionrut/img/galerie/terasa.jpg"
+                alt="Terasa Pensionu RUT s výhledem na Máchovo jezero"
+              /></a
             >
           </div>
           <div class="item">
             <div class="caption">
               <span
-                ><a href="/historie"
+                ><a href={ROUTES.historie}
                   ><strong>Historie</strong> | Pensionu RUT a rodiny Formanů</a
                 ></span
               >
               <div class="bg"></div>
             </div>
-            <a href="/historie"
+            <a href={ROUTES.historie}
               ><img
                 src="/theme/pensionrut/img/galerie/rok 1926.jpg"
-                alt=""
+                alt="Historická fotografie Pensionu RUT z roku 1926"
               /></a
             >
           </div>
           <div class="item">
             <div class="caption">
               <span
-                ><a href="/ubytovani"
+                ><a href={ROUTES.ubytovani}
                   ><strong>Ubytování</strong> | Pension RUT ve Starých Splavech</a
                 ></span
               >
               <div class="bg"></div>
             </div>
-            <a href="/ubytovani"
+            <a href={ROUTES.ubytovani}
               ><img
                 src="/theme/pensionrut/img/galerie/pokoj 14.jpg"
-                alt=""
+                alt="Pokoj č. 14 v Pensionu RUT s výhledem na jezero"
               /></a
             >
           </div>
           <div class="item">
             <div class="caption">
               <span
-                ><a href="/okoli"
+                ><a href={ROUTES.okoli}
                   ><strong>Okolí</strong> | Krásná krajina Máchova jezera</a
                 ></span
               >
               <div class="bg"></div>
             </div>
-            <a href="/okoli"
-              ><img src="/theme/pensionrut/img/galerie/okoli.jpg" alt="" /></a
-            >
-          </div>
-          <div class="item">
-            <div class="caption">
-              <span
-                ><a href="/regata-rut-classic"
-                  ><strong>Regata RUT Classic</strong> | Pohár Withe Queen</a
-                ></span
-              >
-              <div class="bg"></div>
-            </div>
-            <a href="/regata-rut-classic"
+            <a href={ROUTES.okoli}
               ><img
-                src="/theme/pensionrut/img/galerie/rut-classic.jpg"
-                alt=""
+                src="/theme/pensionrut/img/galerie/okoli.jpg"
+                alt="Okolí Pensionu RUT - krásná příroda u Máchova jezera"
               /></a
             >
           </div>
           <div class="item">
             <div class="caption">
               <span
-                ><a href="/vylety"
+                ><a href={ROUTES.regata}
+                  ><strong>Regata RUT Classic</strong> | Pohár Withe Queen</a
+                ></span
+              >
+              <div class="bg"></div>
+            </div>
+            <a href={ROUTES.regata}
+              ><img
+                src="/theme/pensionrut/img/galerie/rut-classic.jpg"
+                alt="Regata RUT Classic - závod klasických plachetnic na Máchově jezeře"
+              /></a
+            >
+          </div>
+          <div class="item">
+            <div class="caption">
+              <span
+                ><a href={ROUTES.vylety}
                   ><strong>Výlety</strong> | Poznejte krásu Máchova jezera</a
                 ></span
               >
               <div class="bg"></div>
             </div>
-            <a href="/vylety"
-              ><img src="/theme/pensionrut/img/galerie/bezdez.jpg" alt="" /></a
+            <a href={ROUTES.vylety}
+              ><img
+                src="/theme/pensionrut/img/galerie/bezdez.jpg"
+                alt="Hrad Bezděz - výlet z Pensionu RUT"
+              /></a
             >
           </div>
         </div>
@@ -228,27 +332,33 @@ const {
               <p class="weather-col">
                 <img
                   title="déšť"
+                  alt="Ikona počasí - déšť"
                   src="https://openweathermap.org/img/wn/10d@2x.png"
                 /><span class="date"
                   ><strong>čtvrtek</strong> <strong>23 říj</strong>
                 </span><span class="info"
-                  ><span>Min:&nbsp;8°C</span> <span>Max:&nbsp;16°C</span></span>
+                  ><span>Min:&nbsp;8°C</span> <span>Max:&nbsp;16°C</span></span
+                >
               </p><p class="weather-col">
                 <img
                   title="slabý déšť"
+                  alt="Ikona počasí - slabý déšť"
                   src="https://openweathermap.org/img/wn/10d@2x.png"
                 /><span class="date"
                   ><strong>pátek</strong> <strong>24 říj</strong>
                 </span><span class="info"
-                  ><span>Min:&nbsp;5°C</span> <span>Max:&nbsp;9°C</span></span>
+                  ><span>Min:&nbsp;5°C</span> <span>Max:&nbsp;9°C</span></span
+                >
               </p><p class="weather-col">
                 <img
                   title="slabý déšť"
+                  alt="Ikona počasí - slabý déšť"
                   src="https://openweathermap.org/img/wn/10d@2x.png"
                 /><span class="date"
                   ><strong>sobota</strong> <strong>25 říj</strong>
                 </span><span class="info"
-                  ><span>Min:&nbsp;5°C</span> <span>Max:&nbsp;8°C</span></span>
+                  ><span>Min:&nbsp;5°C</span> <span>Max:&nbsp;8°C</span></span
+                >
               </p>
             </div>
           </div>
@@ -269,8 +379,8 @@ const {
           </div>
           <div class="span4">
             <p>
-              Created with pleasure by <a href="http://ceda.splavy.com"
-                >Ceda_</a>
+              Created with pleasure by <a href="http://ceda.splavy.com">Ceda_</a
+              >
             </p>
           </div>
         </div>
@@ -313,6 +423,24 @@ const {
         s.src = "https://w.behold.so/widget.js";
         d.body.appendChild(s);
       }
+    </script>
+    <script is:inline>
+      // Reinicializace JS po Astro page transitionech
+      document.addEventListener("astro:page-load", () => {
+        // Reinicializace carousel/slider
+        if (typeof $ !== "undefined" && $(".iosSlider").length > 0) {
+          $(".iosSlider").iosSlider({
+            snapToChildren: true,
+            desktopClickDrag: true,
+            keyboardControls: true,
+            navNextSelector: $("#rightBarArrow"),
+            navPrevSelector: $("#leftBarArrow"),
+            autoSlide: true,
+            scrollbar: false,
+            autoSlideTimer: 5000,
+          });
+        }
+      });
     </script>
   </body>
 </html>

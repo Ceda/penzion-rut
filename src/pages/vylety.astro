@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
+import { ROUTES } from "../config/routes";
 
 // Import obrázků
 import hradBezdez from "../images/vylety/hrad-bezdez.jpg";
@@ -14,9 +15,31 @@ import zamekZakupy from "../images/vylety/zamek-zakupy.jpg";
   description="Tipy na výlety v okolí Máchova jezera - hrad Bezděz, Houska, Kokořín, vodní hrad Lipý, zámek Lemberk, Zákupy. Památková zóna Žďár, lidová architektura. Ideální výchozí bod pro poznávání Českolipska."
   keywords="výlety Máchovo jezero, hrad Bezděz, hrad Houska, zámek Lemberk, zámek Zákupy, památky Českolipsko, co navštívit, hrady a zámky, výlety z Pensionu RUT"
 >
+  <!-- Schema.org Breadcrumb markup -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Hlavní stránka",
+          "item": "https://www.pensionrut.cz/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Výlety",
+          "item": "https://www.pensionrut.cz/vylety"
+        }
+      ]
+    }
+  </script>
+
   <div id="crumbs">
-    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/vylety"
-      >Výlety</a
+    Právě se nacházíte: <a href={ROUTES.home}>Hlavní stánka</a> / <a
+      href={ROUTES.vylety}>Výlety</a
     >
   </div>
 

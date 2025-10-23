@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getImage } from "astro:assets";
+import { ROUTES } from "../config/routes";
 import regataImg from "../images/regata/regata-2015.jpg";
 
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
@@ -46,9 +47,69 @@ const regataLarge = await Promise.all(
   description="Regata RUT Classic - tradiční závod klasických dřevěných plachetnic veteránů na Máchově jezeře. Pohár White Queen, čtyřdenní společenská akce každoročně koncem června. Závody, večírky, živá hudba."
   keywords="Regata RUT Classic, Pohár White Queen, plachetnice Máchovo jezero, závod plachetnic, jachting, dřevěné lodě, veteránské lodě, společenská událost, závody na jezeře"
 >
+  <!-- Schema.org Event markup -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "Regata RUT Classic - Pohár White Queen",
+      "description": "Tradiční závod klasických dřevěných plachetnic veteránů na Máchově jezeře. Čtyřdenní společenská akce s závody, večírky a živou hudbou.",
+      "startDate": "2024-06-28",
+      "endDate": "2024-06-30",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Pension RUT a Jachtklub Staré Splavy",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Lázeňský Vrch 97",
+          "addressLocality": "Staré Splavy",
+          "postalCode": "471 63",
+          "addressCountry": "CZ"
+        }
+      },
+      "image": "https://www.pensionrut.cz/theme/pensionrut/img/galerie/rut-classic.jpg",
+      "organizer": {
+        "@type": "Organization",
+        "name": "Pension RUT Formanovi",
+        "url": "https://www.pensionrut.cz"
+      },
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "price": "0",
+        "priceCurrency": "CZK",
+        "url": "https://www.pensionrut.cz/regata-rut-classic"
+      }
+    }
+  </script>
+
+  <!-- Schema.org Breadcrumb markup -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Hlavní stránka",
+          "item": "https://www.pensionrut.cz/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Regata RUT Classic",
+          "item": "https://www.pensionrut.cz/regata-rut-classic"
+        }
+      ]
+    }
+  </script>
+
   <div id="crumbs">
-    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a
-      href="/regata-rut-classic">Regata RUT Classic</a
+    Právě se nacházíte: <a href={ROUTES.home}>Hlavní stánka</a> / <a
+      href={ROUTES.regata}>Regata RUT Classic</a
     >
   </div>
 
@@ -165,7 +226,7 @@ const regataLarge = await Promise.all(
         >
           <Image
             src={img}
-            alt="Regata Rut Classic"
+            alt={`Regata RUT Classic - závod klasických plachetnic na Máchově jezeře ${i + 1}`}
             width={150}
             height={100}
             widths={[150, 300]}

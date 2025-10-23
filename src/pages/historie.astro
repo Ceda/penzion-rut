@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getImage } from "astro:assets";
+import { ROUTES } from "../config/routes";
 
 // Import historie images
 import personl1929 from "../images/historie/personl_rok_1929.jpg";
@@ -142,9 +143,31 @@ const galleryImages = [
   description="Příběh Pensionu RUT a rodiny Formanů. První český pension u Máchova jezera postavený v roce 1926. Zde vyrůstal slavný režisér Miloš Forman. Historie plná zajímavých osobností a dramatických událostí."
   keywords="historie Pension RUT, Miloš Forman, rodina Formanů, první český pension, Máchovo jezero historie, Staré Splavy historie, Pavel Forman, bratrí Čapkové"
 >
+  <!-- Schema.org Breadcrumb markup -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Hlavní stránka",
+          "item": "https://www.pensionrut.cz/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Historie",
+          "item": "https://www.pensionrut.cz/historie"
+        }
+      ]
+    }
+  </script>
+
   <div id="crumbs">
-    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/historie"
-      >Historie</a
+    Právě se nacházíte: <a href={ROUTES.home}>Hlavní stánka</a> / <a
+      href={ROUTES.historie}>Historie</a
     >
   </div>
 
@@ -340,7 +363,7 @@ const galleryImages = [
   <h2>Historické fotografie</h2>
   <div class="photoGallery">
     {
-      galleryImages.map((img) => (
+      galleryImages.map((img, i) => (
         <a
           href={img.large.src}
           class="galleryPhoto lightbox"
@@ -348,7 +371,7 @@ const galleryImages = [
         >
           <Image
             src={img.src}
-            alt="Historická fotografie"
+            alt={`Historická fotografie Pensionu RUT a rodiny Formanů ${i + 1}`}
             width={150}
             height={100}
             widths={[150, 300]}

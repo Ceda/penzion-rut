@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getImage } from "astro:assets";
+import { ROUTES } from "../config/routes";
 
 // Import homepage images
 import adamnaweb from "../images/homepage/adamnaweb.jpg";
@@ -23,8 +24,24 @@ const adamnawebLarge = await getImage({
   description="Pension RUT ve Starých Splavech u Máchova jezera. První český pension na břehu jezera, který provozuje rodina Miloše Formana od roku 1926. Romantické ubytování s výhledem na jezero."
   keywords="Pension RUT, ubytování Máchovo jezero, Staré Splavy, dovolená u jezera, pension Forman, Miloš Forman, ubytování s výhledem"
 >
+  <!-- Schema.org Breadcrumb markup -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Hlavní stránka",
+          "item": "https://www.pensionrut.cz/"
+        }
+      ]
+    }
+  </script>
+
   <div id="crumbs">
-    Právě se nacházíte: <a href="/">Hlavní stánka</a>
+    Právě se nacházíte: <a href={ROUTES.home}>Hlavní stánka</a>
   </div>
 
   <div class="contents">
@@ -69,7 +86,7 @@ const adamnawebLarge = await getImage({
         <a
           data-lightbox-gallery="gallery"
           class="galleryPhoto"
-          href="/ubytovani"
+          href={ROUTES.ubytovani}
         >
           <Image
             src={ubytovani}
@@ -80,7 +97,7 @@ const adamnawebLarge = await getImage({
             format="webp"
           />
         </a>
-        <h4><a href="/ubytovani">Pension RUT - ubytování</a></h4>
+        <h4><a href={ROUTES.ubytovani}>Pension RUT - ubytování</a></h4>
         <p>
           Pension se nachází v lázeňském městečku Staré Splavy, které jsou známé
           ozdravným vzduchem. Jedinečnost objektu je mimo jiné dána jeho
@@ -88,7 +105,11 @@ const adamnawebLarge = await getImage({
         </p>
       </div>
       <div class="span6">
-        <a data-lightbox-gallery="gallery" class="galleryPhoto" href="/okoli">
+        <a
+          data-lightbox-gallery="gallery"
+          class="galleryPhoto"
+          href={ROUTES.okoli}
+        >
           <Image
             src={okoli}
             alt="Okolí pensionu"
@@ -98,7 +119,7 @@ const adamnawebLarge = await getImage({
             format="webp"
           />
         </a>
-        <h4><a href="/okoli">Pension RUT - okolí</a></h4>
+        <h4><a href={ROUTES.okoli}>Pension RUT - okolí</a></h4>
         <p>
           Idylická krajina Máchova jezera nabízí pěší procházky, túry,
           cyklistické trasy a výlety do zajímavých destinací – hrady Bezděz,
@@ -111,7 +132,7 @@ const adamnawebLarge = await getImage({
         <a
           data-lightbox-gallery="gallery"
           class="galleryPhoto"
-          href="/historie"
+          href={ROUTES.historie}
         >
           <Image
             src={historie}
@@ -122,7 +143,7 @@ const adamnawebLarge = await getImage({
             format="webp"
           />
         </a>
-        <h4><a href="/historie">Pension RUT - historie</a></h4>
+        <h4><a href={ROUTES.historie}>Pension RUT - historie</a></h4>
         <p>
           Staré Splavy - Rodiče slavného režiséra byli průkopníky turismu u
           Máchova jezera, postavili tu první český pension. Rodinný klenot na
@@ -130,7 +151,11 @@ const adamnawebLarge = await getImage({
         </p>
       </div>
       <div class="span6">
-        <a data-lightbox-gallery="gallery" class="galleryPhoto" href="/vylety">
+        <a
+          data-lightbox-gallery="gallery"
+          class="galleryPhoto"
+          href={ROUTES.vylety}
+        >
           <Image
             src={vylety}
             alt="Výlety v okolí"
@@ -140,7 +165,7 @@ const adamnawebLarge = await getImage({
             format="webp"
           />
         </a>
-        <h4><a href="/vylety">Pension RUT - výlety</a></h4>
+        <h4><a href={ROUTES.vylety}>Pension RUT - výlety</a></h4>
         <p>
           Staré Splavy - Rodiče slavného režiséra byli průkopníky turismu u
           Máchova jezera, postavili tu první český pension. Rodinný klenot na

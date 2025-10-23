@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getImage } from "astro:assets";
+import { ROUTES } from "../config/routes";
 
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
   "../images/galerie/*.{jpg,JPG}",
@@ -75,9 +76,31 @@ const ubytovaniLarge = await Promise.all(
   description="Ubytování v Pensionu RUT ve Starých Splavech. Kapacita 33 lůžek v dvoulůžkových, třílůžkových pokojích a apartmánech. Většina pokojů s balkóny a výhledem na Máchovo jezero. Přímý přístup k jezeru."
   keywords="ubytování Máchovo jezero, pokoje Staré Splavy, apartmány jezero, pension s balkónem, ubytování výhled na jezero, dvoulůžkové pokoje, apartmány Máchovo jezero"
 >
+  <!-- Schema.org Breadcrumb markup -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Hlavní stránka",
+          "item": "https://www.pensionrut.cz/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ubytování",
+          "item": "https://www.pensionrut.cz/ubytovani"
+        }
+      ]
+    }
+  </script>
+
   <div id="crumbs">
-    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/ubytovani"
-      >Ubytování</a
+    Právě se nacházíte: <a href={ROUTES.home}>Hlavní stánka</a> / <a
+      href={ROUTES.ubytovani}>Ubytování</a
     >
   </div>
 
@@ -131,7 +154,7 @@ const ubytovaniLarge = await Promise.all(
         >
           <Image
             src={img}
-            alt="Ubytování"
+            alt={`Ubytování v Pensionu RUT - pokoje a apartmány ${i + 1}`}
             width={150}
             height={100}
             widths={[150, 300]}

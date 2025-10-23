@@ -1,0 +1,22 @@
+---
+import { NAV_ITEMS } from "../config/routes";
+
+const currentPath = Astro.url.pathname;
+
+const isActive = (href: string) => {
+  if (href === "/") {
+    return currentPath === "/";
+  }
+  return currentPath.startsWith(href);
+};
+---
+
+<ul class="nav">
+  {
+    NAV_ITEMS.map(({ href, label }) => (
+      <li class:list={{ active: isActive(href) }}>
+        <a href={href}>{label}</a>
+      </li>
+    ))
+  }
+</ul>

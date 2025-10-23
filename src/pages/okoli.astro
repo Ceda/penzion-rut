@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getImage } from "astro:assets";
+import { ROUTES } from "../config/routes";
 
 // Import obrázků
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
@@ -49,9 +50,31 @@ const okoliLarge = await Promise.all(
   description="Okolí Pensionu RUT a Máchova jezera. Pěší procházky, cyklistické trasy, vodní sporty, tenisový kurt, minigolf, jízda na koni. Písečná pláž, krytý bazén. Ideální prostředí pro aktivní dovolenou i odpočinek."
   keywords="okolí Máchovo jezero, co dělat Staré Splavy, aktivity Máchovo jezero, vodní sporty, cyklistika, pěší turistika, tenisový kurt, písečná pláž, bazén Staré Splavy"
 >
+  <!-- Schema.org Breadcrumb markup -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Hlavní stránka",
+          "item": "https://www.pensionrut.cz/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Okolí",
+          "item": "https://www.pensionrut.cz/okoli"
+        }
+      ]
+    }
+  </script>
+
   <div id="crumbs">
-    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/okoli"
-      >Okolí</a
+    Právě se nacházíte: <a href={ROUTES.home}>Hlavní stánka</a> / <a
+      href={ROUTES.okoli}>Okolí</a
     >
   </div>
 
@@ -103,7 +126,7 @@ const okoliLarge = await Promise.all(
         >
           <Image
             src={img}
-            alt="Okolí Máchova jezera"
+            alt={`Okolí Máchova jezera - příroda a krajina ${i + 1}`}
             width={150}
             height={100}
             widths={[150, 300]}

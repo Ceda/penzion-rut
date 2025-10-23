@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { ROUTES } from "../config/routes";
 ---
 
 <Layout
@@ -7,9 +8,31 @@ import Layout from "../layouts/Layout.astro";
   description="Ceník ubytování v Pensionu RUT ve Starých Splavech. Ceny včetně snídaně formou švédských stolů. Dvoulůžkové pokoje od 2500 Kč, apartmány od 3500 Kč. Během léta k dispozici večeře z domácí kuchyně."
   keywords="ceník ubytování Máchovo jezero, ceny pension Staré Splavy, ceník pokojů, ubytování se snídaní, ceny apartmány, kolik stojí ubytování Máchovo jezero"
 >
+  <!-- Schema.org Breadcrumb markup -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Hlavní stránka",
+          "item": "https://www.pensionrut.cz/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ceník",
+          "item": "https://www.pensionrut.cz/cenik"
+        }
+      ]
+    }
+  </script>
+
   <div id="crumbs">
-    Právě se nacházíte: <a href="/">Hlavní stánka</a> / <a href="/cenik"
-      >Ceník</a
+    Právě se nacházíte: <a href={ROUTES.home}>Hlavní stánka</a> / <a
+      href={ROUTES.cenik}>Ceník</a
     >
   </div>
 
