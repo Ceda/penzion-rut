@@ -1,14 +1,26 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+}
+
+const {
+  title = 'Máchovo jezero ubytování - Pension RUT, Máchovo jezero',
+  description = 'Pension se nachází v lázeňském městečku Staré Splavy, které jsou známé ozdravným vzduchem. Jedinečnost objektu je mimo jiné dána jeho romantickým umístěním nad Máchovým jezerem.',
+  keywords = 'Ubytování Máchovo jezero, dovolená, Staré Splavy'
+} = Astro.props;
+---
 
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>
-    Máchovo jezero ubytování - Pension RUT, Máchovo jezero
-  </title>
+  <title>{title}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="google-site-verification" content="ib0MMyZ0nMYt6ogb31WhmOCDK3x9BZQOno3zaWLrUIA" />
-  <meta name="keywords" content="Ubytování Máchovo jezero, dovolená, Staré Splavy" /><meta name="description" content="Pension se nachází v lázeňském městečku Staré Splavy, které jsou známé ozdravným vzduchem. Jedinčnost objektu je mimo jiné dána jeho romantickým umístěním nad Máchovým jezerem..." />
+  <meta name="keywords" content={keywords} />
+  <meta name="description" content={description} />
   <link rel="stylesheet" type="text/css" href="/theme/pensionrut/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="/theme/pensionrut/css/bootstrap-responsive.min.css" />
   <link rel="stylesheet" type="text/css" href="/theme/pensionrut/css/style.min.css" />
