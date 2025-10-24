@@ -155,6 +155,7 @@ body .navbar .navbar-inner .nav > .active > a {
   background: transparent !important;
   box-shadow: none;
   border-bottom: 4px solid #a1988d;
+  margin-bottom: 0px;
 }
 body .navbar .navbar-inner .nav > .active > a:hover {
   color: #00529f;
@@ -358,6 +359,40 @@ body #body #weather .weatherIcon {
   float: left;
   margin: 0 8px;
   text-align: center;
+}
+body #body .weather_info {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+body #body .weather_info .weather-col {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body #body .weather_info .weather-col img {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 5px;
+}
+body #body .weather_info .weather-col .date {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+body #body .weather_info .weather-col .date strong {
+  display: block;
+  line-height: 1.2;
+}
+body #body .weather_info .weather-col .info {
+  display: flex;
+  flex-direction: column;
+}
+body #body .weather_info .weather-col .info span {
+  display: block;
+  line-height: 1.3;
 }
 body #body .galleryPhoto {
   border: 1px solid #dddddd;

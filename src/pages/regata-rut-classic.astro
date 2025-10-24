@@ -6,12 +6,12 @@ import { ROUTES } from "../config/routes";
 import regataImg from "../images/regata/regata-2015.jpg";
 
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  "../images/galerie/*.{jpg,JPG}",
+  "../images/regata/*.{jpg,JPG}",
   { eager: true }
 );
 
 const getImageByName = (name: string) => {
-  const path = `../images/galerie/${name}`;
+  const path = `../images/regata/${name}`;
   return allImages[path]?.default;
 };
 

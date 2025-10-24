@@ -6,12 +6,12 @@ import { ROUTES } from "../config/routes";
 
 // Import obrázků
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  "../images/galerie/*.{jpg,JPG}",
+  "../images/okoli/*.{jpg,JPG}",
   { eager: true }
 );
 
 const getImageByName = (name: string) => {
-  const path = `../images/galerie/${name}`;
+  const path = `../images/okoli/${name}`;
   return allImages[path]?.default;
 };
 

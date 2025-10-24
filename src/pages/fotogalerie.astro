@@ -4,16 +4,39 @@ import { Image } from "astro:assets";
 import { getImage } from "astro:assets";
 import { ROUTES } from "../config/routes";
 
-// Dynamicky načti všechny obrázky z galerie
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
+// Dynamicky načti obrázky z jednotlivých složek
+const historieImagesAll = import.meta.glob<{ default: ImageMetadata }>(
+  "../images/historie/*.{jpg,JPG}",
+  { eager: true }
+);
+const ubytovaniImagesAll = import.meta.glob<{ default: ImageMetadata }>(
+  "../images/ubytovani/*.{jpg,JPG}",
+  { eager: true }
+);
+const stravovaniImagesAll = import.meta.glob<{ default: ImageMetadata }>(
   "../images/galerie/*.{jpg,JPG}",
   { eager: true }
 );
+const regataImagesAll = import.meta.glob<{ default: ImageMetadata }>(
+  "../images/regata/*.{jpg,JPG}",
+  { eager: true }
+);
+const okoliImagesAll = import.meta.glob<{ default: ImageMetadata }>(
+  "../images/okoli/*.{jpg,JPG}",
+  { eager: true }
+);
 
-// Funkce pro získání obrázku podle jména
-const getImageByName = (name: string) => {
-  const path = `../images/galerie/${name}`;
-  return allImages[path]?.default;
+// Funkce pro získání obrázku podle jména a složky
+const getImageByName = (name: string, folder: string = "galerie") => {
+  const folders: Record<string, any> = {
+    historie: historieImagesAll,
+    ubytovani: ubytovaniImagesAll,
+    stravovani: stravovaniImagesAll,
+    regata: regataImagesAll,
+    okoli: okoliImagesAll,
+  };
+  const path = `../images/${folder}/${name}`;
+  return folders[folder]?.[path]?.default;
 };
 
 // Historické fotografie
@@ -37,7 +60,7 @@ const historieImages = [
   "Adamscan021.jpg",
   "Adamscan019.jpg",
 ]
-  .map((name) => getImageByName(name))
+  .map((name) => getImageByName(name, "historie"))
   .filter(Boolean);
 
 // Ubytování
@@ -81,7 +104,7 @@ const ubytovaniImages = [
   "DSC_4863.JPG",
   "DSC_5046.JPG",
 ]
-  .map((name) => getImageByName(name))
+  .map((name) => getImageByName(name, "ubytovani"))
   .filter(Boolean);
 
 // Stravování
@@ -99,7 +122,7 @@ const stravovaniImages = [
   "DSC0184.JPG",
   "DSC0182.JPG",
 ]
-  .map((name) => getImageByName(name))
+  .map((name) => getImageByName(name, "stravovani"))
   .filter(Boolean);
 
 // Regata
@@ -121,7 +144,7 @@ const regataImages = [
   "DSC_9393.JPG",
   "DSC_9498.JPG",
 ]
-  .map((name) => getImageByName(name))
+  .map((name) => getImageByName(name, "regata"))
   .filter(Boolean);
 
 // Okolí
@@ -137,7 +160,7 @@ const okoliImages = [
   "pohled_z_okna-0.jpg",
   "DSC_4809.jpg",
 ]
-  .map((name) => getImageByName(name))
+  .map((name) => getImageByName(name, "okoli"))
   .filter(Boolean);
 
 // Připrav velké verze pro lightbox
