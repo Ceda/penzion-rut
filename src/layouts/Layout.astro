@@ -147,8 +147,10 @@ const {
       type="text/css"
       href="/theme/pensionrut/css/style.min.css"
     />
-    <script type="text/javascript" src="/theme/pensionrut/js/bootstrap.min.js"
-    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css"
+    />
     <script type="text/javascript" src="/theme/pensionrut/js/scripts.min.js"
     ></script>
   </head>
@@ -399,44 +401,52 @@ const {
       }
     </script>
     <script is:inline>
+      // Načtení GLightbox dynamicky
+      const loadGLightbox = () => {
+        if (typeof GLightbox === "undefined") {
+          const script = document.createElement("script");
+          script.src =
+            "https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js";
+          script.onload = () => initGLightbox();
+          document.body.appendChild(script);
+        } else {
+          initGLightbox();
+        }
+      };
+
+      const initGLightbox = () => {
+        if (typeof GLightbox !== "undefined") {
+          GLightbox({
+            selector: ".lightbox",
+            touchNavigation: true,
+            loop: true,
+            autoplayVideos: false,
+          });
+        }
+      };
+
       // Reinicializace JS po Astro page transitionech
       document.addEventListener("astro:page-load", () => {
         // Reinicializace carousel/slider
         if (typeof $ !== "undefined" && $(".iosSlider").length > 0) {
-          $(".iosSlider").iosSlider({
-            snapToChildren: true,
-            desktopClickDrag: true,
+          const sliderSettings = {
+            infiniteSlider: true,
+            snapSlideCenter: true,
             keyboardControls: true,
             navNextSelector: $("#rightBarArrow"),
             navPrevSelector: $("#leftBarArrow"),
-            autoSlide: true,
-            scrollbar: false,
-            autoSlideTimer: 5000,
-          });
+          };
+
+          // Na malých obrazovkách vypni centrovani
+          if ($(window).width() < 979) {
+            sliderSettings.snapSlideCenter = false;
+          }
+
+          $(".iosSlider").iosSlider(sliderSettings);
         }
 
-        // Reinicializace lightbox galerie
-        if (typeof $ !== "undefined" && $.fn.nivoLightbox) {
-          // Force all .lightbox links to be treated as images
-          $("a.lightbox").each(function () {
-            const href = $(this).attr("href");
-            if (
-              href &&
-              (href.includes(".webp") ||
-                href.includes(".jpg") ||
-                href.includes(".png"))
-            ) {
-              $(this).attr("data-lightbox-type", "image");
-            }
-          });
-
-          $("a.lightbox").nivoLightbox({
-            effect: "fade",
-            keyboardNav: true,
-            clickOverlayToClose: true,
-            errorMessage: "Obrázek se nepodařilo načíst.",
-          });
-        }
+        // Načti a inicializuj GLightbox
+        loadGLightbox();
       });
     </script>
   </body>

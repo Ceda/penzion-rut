@@ -1,0 +1,554 @@
+/* Body and structure
+-------------------------------------------------- */
+@font-face {
+  font-family: "bahnhof_regularregular";
+  src: url("../font/bahnhofregular-webfont.eot");
+  src:
+    url("../font/bahnhofregular-webfont.eot?#iefix") format("embedded-opentype"),
+    url("../font/bahnhofregular-webfont.woff") format("woff"),
+    url("../font/bahnhofregular-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "tusarregular";
+  src: url("../font/tusar-webfont.eot");
+  src:
+    url("../font/tusar-webfont.eot?#iefix") format("embedded-opentype"),
+    url("../font/tusar-webfont.woff") format("woff"),
+    url("../font/tusar-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@blue: #00529f;
+@white: #ffffff;
+@lgray: #e6e6e6;
+
+* {
+  outline: none !important;
+}
+
+.clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    line-height: 0;
+    content: "";
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/* Global
+---------------------------------------- */
+
+.btn {
+  background: @lgray;
+  border-radius: 0;
+  padding: 7px 15px;
+  border: 0;
+  &:hover {
+    background: darken(@lgray, 5%);
+  }
+}
+
+input,
+textarea {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 10px !important;
+}
+select {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+a {
+  color: @blue;
+}
+
+p.claim {
+  color: @blue;
+  text-align: center;
+  border-top: 1px dotted @lgray;
+  border-bottom: 1px dotted @lgray;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+p a.pull-left {
+  margin-right: 10px !important;
+}
+
+/* Main styles
+---------------------------------------- */
+
+.img-center {
+  display: block;
+  margin: auto;
+}
+
+body {
+  position: relative;
+  padding-top: 70px;
+  font:
+    83%/1.5 "Roboto",
+    Arial,
+    Helvetica,
+    sans-serif;
+  color: #6a6a6a;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  legend {
+    font-family: "bahnhof_regularregular";
+    letter-spacing: -1px;
+    font-weight: normal;
+    color: #104aa4;
+  }
+
+  /* Navigation
+  -------------------------------------------------- */
+
+  .navbar {
+    .navbar-inner {
+      background: #00529f;
+      border: 0;
+
+      .brand {
+        margin: 0;
+        padding: 15px;
+      }
+
+      .nav {
+        & > li > a:focus,
+        .navbar .nav > li > a:hover {
+          color: @white;
+        }
+        & > li {
+          &.selected a {
+            color: @white;
+            background: lighten(@blue, 5%) !important;
+            border-bottom: 4px solid lighten(#a1988d, 30%);
+            margin-bottom: 0px;
+          }
+
+          & > a {
+            color: @white;
+            text-shadow: none;
+            text-transform: uppercase;
+            padding: 19px 12px;
+            font-family: "bahnhof_regularregular";
+            margin-bottom: 4px;
+            font-size: 14px;
+
+            &:hover {
+              color: #00529f;
+              background: @white !important;
+              border-bottom: 4px solid #a1988d;
+              margin-bottom: 0px;
+            }
+          }
+        }
+        & > .active > a {
+          color: @white;
+          background: transparent !important;
+          box-shadow: none;
+          border-bottom: 4px solid #a1988d;
+
+          &:hover {
+            color: #00529f;
+            background: @white !important;
+            border-top: 0 solid #a1988d;
+          }
+        }
+      }
+    }
+  }
+
+  /* Header
+  -------------------------------------------------- */
+
+  #overview {
+    height: 110px;
+
+    img {
+      margin-top: 10px;
+
+      &.headertext {
+        position: relative;
+        top: 20px;
+      }
+    }
+  }
+
+  /* Slider
+  -------------------------------------------------- */
+
+  .slider {
+    .barArrow {
+      cursor: pointer;
+      position: absolute;
+      z-index: 2;
+    }
+
+    #rightBarArrow {
+      background: url("http://milosforman.com/images/barRight.png") no-repeat
+        scroll 0 0 transparent;
+      height: 72px;
+      right: 30px;
+      margin-top: 114px;
+      width: 73px;
+    }
+
+    #leftBarArrow {
+      background: url("http://milosforman.com/images/barLeft.png") no-repeat
+        scroll 0 0 transparent;
+      height: 72px;
+      left: 30px;
+      margin-top: 114px;
+      width: 73px;
+    }
+
+    #barContent {
+      height: 366px;
+      overflow: hidden;
+      position: relative;
+
+      & > div {
+        background: none repeat scroll 0 0 #333333;
+        cursor: pointer;
+        float: left;
+        height: 366px;
+        position: relative;
+        width: 510px;
+      }
+    }
+  }
+
+  /* Body
+  -------------------------------------------------- */
+
+  #body {
+    background-color: #f5f5f5;
+
+    .container {
+      background-color: @white;
+      padding: 5px;
+      padding-bottom: 60px;
+
+      h1 {
+        small {
+          font-size: 22px;
+        }
+      }
+
+      div.row-fluid [class*="span"] {
+        padding: 5px 10px 5px 15px;
+
+        img {
+          padding: 4px;
+
+          &.pull-left {
+            margin-right: 6px;
+          }
+
+          &.pull-right {
+            margin-left: 6px;
+          }
+        }
+      }
+      .span4 {
+        h3 {
+          margin: 0px;
+        }
+        .media {
+          border-bottom: 1px dotted #999999;
+        }
+      }
+    }
+
+    /* Pricelist
+    ---------------------------------------- */
+
+    .pricelist {
+      &.first-row {
+        .span6 {
+          height: 320px;
+          ul {
+            height: 110px;
+          }
+        }
+      }
+      &.last-row {
+        .span6 {
+          ul {
+            height: 150px;
+          }
+          &:last-child {
+            ul {
+              height: 190px;
+            }
+          }
+        }
+      }
+    }
+
+    /* Map contacts
+    -------------------------------------------- */
+
+    .mapcliping {
+      margin-bottom: 10px;
+      img {
+        max-width: none;
+      }
+    }
+
+    /* Contact form
+    -------------------------------------------- */
+
+    #form-1 {
+      .input {
+        &.textarea {
+          clear: both;
+          margin-left: 10px;
+          width: 100%;
+          textarea {
+            width: 90%;
+          }
+        }
+        &.text {
+          width: 30%;
+          float: left;
+          margin-left: 10px;
+          input {
+            width: 90%;
+          }
+          &:last-child {
+            .clearfix();
+          }
+        }
+        input,
+        textarea {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          box-shadow: none;
+
+          &:focus {
+            border-color: lighten(@blue, 15%);
+          }
+        }
+      }
+      .submit input {
+        margin-left: 10px;
+        background: @blue;
+      }
+    }
+
+    #form-2 {
+      .input {
+        &.textarea {
+          clear: both;
+          margin-left: 10px;
+          width: 100%;
+          textarea {
+            width: 90%;
+          }
+        }
+        &.text {
+          width: 47%;
+          float: left;
+          margin-left: 10px;
+          input {
+            width: 90%;
+          }
+          &:last-child {
+            .clearfix();
+          }
+        }
+        input,
+        textarea {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          box-shadow: none;
+
+          &:focus {
+            border-color: lighten(@blue, 15%);
+          }
+        }
+      }
+      h3 {
+        color: @blue;
+      }
+    }
+
+    #form-1,
+    #form-2 {
+      .submit input {
+        margin-left: 10px;
+        background: @blue;
+        border: 0;
+        color: @white;
+        text-shadow: none;
+      }
+    }
+
+    /* Weather form
+    -------------------------------------------- */
+
+    #weather {
+      margin: 0;
+    }
+
+    #weather .weatherIcon {
+      float: left;
+      margin: 0 8px;
+      text-align: center;
+    }
+
+    /* Gallery photos
+    -------------------------------------------- */
+
+    .galleryPhoto {
+      border: 1px solid #dddddd;
+      border-radius: 0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+      display: inline-block;
+      line-height: 20px;
+      transition: all 0.2s ease-in-out 0s;
+      margin: 5px;
+
+      &:hover {
+        border: 1px solid @blue;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+      }
+    }
+  }
+
+  /* Footer
+  -------------------------------------------------- */
+  footer {
+    background-color: @blue;
+    font-family: "bahnhof_regularregular";
+
+    .container {
+      text-align: center;
+      padding: 10px 5px;
+
+      .row-fluid {
+        text-transform: uppercase;
+        font-size: 11px;
+
+        .span8 {
+          min-height: auto;
+          text-align: left;
+          padding: 5px 10px;
+        }
+        .span4 {
+          min-height: auto;
+          text-align: right;
+          padding: 5px 10px;
+        }
+      }
+
+      ul {
+        margin: 0;
+        li {
+          display: inline;
+          padding: 0 2px;
+        }
+      }
+      p {
+        margin-bottom: 0;
+        color: @white;
+      }
+      a {
+        color: #fefefe;
+        text-shadow: 0 1px 0 #333333;
+      }
+    }
+  }
+}
+
+/* Slider
+---------------------------------------- */
+
+.iosSlider {
+  width: 100%;
+  height: 300px;
+
+  .islider {
+    width: 100%;
+    height: 100%;
+
+    .item {
+      float: left;
+      width: 475px;
+
+      img {
+        width: 100%;
+        height: 340px;
+      }
+    }
+  }
+}
+
+.caption {
+  bottom: 40px;
+  left: 0;
+  padding: 10px 0;
+  position: absolute;
+  width: 100%;
+
+  span {
+    color: @white;
+    position: relative;
+    z-index: 1;
+    padding-left: 20px;
+
+    strong {
+      font-family: "bahnhof_regularregular";
+      font-size: 25px;
+      font-weight: normal;
+    }
+    a {
+      color: @white;
+    }
+  }
+
+  .bg {
+    background: none repeat scroll 0 0 #000000;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+  }
+}
+
+.unselectable {
+  opacity: 0.2;
+}
+
+.novinky {
+  margin-bottom: 20px;
+  .media-body {
+    margin-bottom: 7px;
+  }
+  .btn {
+    margin-top: 10px;
+  }
+}
+
+/* Galerie backdrop override
+---------------------------------------- */
+.goverlay {
+  background: rgba(0, 0, 0, 0.75) !important;
+}
