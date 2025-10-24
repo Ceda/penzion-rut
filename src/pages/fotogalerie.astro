@@ -3,8 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getImage } from "astro:assets";
 import { ROUTES } from "../config/routes";
+import { getAllImages } from "../utils/images";
 
-// Dynamicky načti obrázky z jednotlivých složek
+// Načti obrázky z jednotlivých složek
 const historieImagesAll = import.meta.glob<{ default: ImageMetadata }>(
   "../images/historie/*.{jpg,JPG}",
   { eager: true }
@@ -14,7 +15,7 @@ const ubytovaniImagesAll = import.meta.glob<{ default: ImageMetadata }>(
   { eager: true }
 );
 const stravovaniImagesAll = import.meta.glob<{ default: ImageMetadata }>(
-  "../images/galerie/*.{jpg,JPG}",
+  "../images/stravovani/*.{jpg,JPG}",
   { eager: true }
 );
 const regataImagesAll = import.meta.glob<{ default: ImageMetadata }>(
@@ -26,142 +27,12 @@ const okoliImagesAll = import.meta.glob<{ default: ImageMetadata }>(
   { eager: true }
 );
 
-// Funkce pro získání obrázku podle jména a složky
-const getImageByName = (name: string, folder: string = "galerie") => {
-  const folders: Record<string, any> = {
-    historie: historieImagesAll,
-    ubytovani: ubytovaniImagesAll,
-    stravovani: stravovaniImagesAll,
-    regata: regataImagesAll,
-    okoli: okoliImagesAll,
-  };
-  const path = `../images/${folder}/${name}`;
-  return folders[folder]?.[path]?.default;
-};
-
-// Historické fotografie
-const historieImages = [
-  "Adamscan_046.jpg",
-  "Adamscan007.jpg",
-  "personl_rok_1929.jpg",
-  "rok_1926-0.jpg",
-  "Adamscan_038.jpg",
-  "Adamscan023.jpg",
-  "Adamscan026.jpg",
-  "Adamscan010.jpg",
-  "Adamscan028.jpg",
-  "Adamscan025.jpg",
-  "Adamscan030.jpg",
-  "Adamscan029.jpg",
-  "Adamscan034.jpg",
-  "Adamscan_051.jpg",
-  "Adamscan_053.jpg",
-  "Adamscan012.jpg",
-  "Adamscan021.jpg",
-  "Adamscan019.jpg",
-]
-  .map((name) => getImageByName(name, "historie"))
-  .filter(Boolean);
-
-// Ubytování
-const ubytovaniImages = [
-  "DSC1421_hdr_a.jpg",
-  "DSC_6136.jpg",
-  "DSC_6152.jpg",
-  "DSC_5041.jpg",
-  "DSC_5037.jpg",
-  "DSC_4757.JPG",
-  "DSC_6146.JPG",
-  "DSC_6151.jpg",
-  "DSC_6449.JPG",
-  "DSC_6450.JPG",
-  "DSC_6148.jpg",
-  "DSC_6139.jpg",
-  "DSC_6458.JPG",
-  "DSC_6460.JPG",
-  "DSC_6470.JPG",
-  "DSC_6473.JPG",
-  "IMG_1858.JPG",
-  "DSC_6471.JPG",
-  "DSC_4746.JPG",
-  "IMG_5861.JPG",
-  "pokoj_f.JPG",
-  "Pokoje_8643.jpg",
-  "Pokoje_8674.jpg",
-  "Pokoje_8675.jpg",
-  "Pokoje_8677.jpg",
-  "pokoj_a.JPG",
-  "Pokoje_8651.jpg",
-  "Pokoje_8673.jpg",
-  "Pokoje_8687.jpg",
-  "Pokoje_8688.jpg",
-  "Pokoje_8690.jpg",
-  "Pokoje_8695.jpg",
-  "Pokoje_8696.jpg",
-  "pokoj_e.jpg",
-  "pokoj_c.JPG",
-  "pokoj_g.JPG",
-  "DSC_4863.JPG",
-  "DSC_5046.JPG",
-]
-  .map((name) => getImageByName(name, "ubytovani"))
-  .filter(Boolean);
-
-// Stravování
-const stravovaniImages = [
-  "nespresso-0.jpg",
-  "moucnik-0.jpg",
-  "vecere-0.jpg",
-  "vecer_na_baru-0.jpg",
-  "v_kuchyni-0.jpg",
-  "DSC_6750.jpg",
-  "pavel_u_grilu-0.jpg",
-  "letni_jidelna-0.jpg",
-  "DSC0251.jpg",
-  "DSC0183.jpg",
-  "DSC0184.JPG",
-  "DSC0182.JPG",
-]
-  .map((name) => getImageByName(name, "stravovani"))
-  .filter(Boolean);
-
-// Regata
-const regataImages = [
-  "DSC_9409.jpg",
-  "DSC_9443.jpg",
-  "DSC_9469.jpg",
-  "DSC_9474.jpg",
-  "DSC_9405.JPG",
-  "DSC_9401_Vltava.jpg",
-  "DSC_9445.JPG",
-  "DSC_9455.JPG",
-  "DSC_9473.JPG",
-  "DSC_9447.JPG",
-  "DSC_9491.JPG",
-  "DSC_9510.JPG",
-  "DSC_9535.JPG",
-  "DSC_9347.JPG",
-  "DSC_9393.JPG",
-  "DSC_9498.JPG",
-]
-  .map((name) => getImageByName(name, "regata"))
-  .filter(Boolean);
-
-// Okolí
-const okoliImages = [
-  "bezdez-0.jpg",
-  "jezero-0.jpg",
-  "parnik_Hynek-0.jpg",
-  "plaz-0.jpg",
-  "DSC_4982.jpg",
-  "okoli-0.jpg",
-  "DSC_5030.jpg",
-  "DSC_4804.jpg",
-  "pohled_z_okna-0.jpg",
-  "DSC_4809.jpg",
-]
-  .map((name) => getImageByName(name, "okoli"))
-  .filter(Boolean);
+// Automaticky načti všechny obrázky ze složek
+const historieImages = getAllImages(historieImagesAll);
+const ubytovaniImages = getAllImages(ubytovaniImagesAll);
+const stravovaniImages = getAllImages(stravovaniImagesAll);
+const regataImages = getAllImages(regataImagesAll);
+const okoliImages = getAllImages(okoliImagesAll);
 
 // Připrav velké verze pro lightbox
 const prepareLargeImages = async (images: any[]) => {

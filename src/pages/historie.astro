@@ -3,28 +3,50 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getImage } from "astro:assets";
 import { ROUTES } from "../config/routes";
+import { getImageByName } from "../utils/images";
 
-// Import historie images
-import personl1929 from "../images/historie/personl_rok_1929.jpg";
-import adamscan046 from "../images/historie/Adamscan_046.jpg";
-import adamscan007 from "../images/historie/Adamscan007.jpg";
-import rok1926 from "../images/historie/rok_1926-0.jpg";
-import adamscan038 from "../images/historie/Adamscan_038.jpg";
-import adamscan023 from "../images/historie/Adamscan023.jpg";
-import adamscan026 from "../images/historie/Adamscan026.jpg";
-import adamscan010 from "../images/historie/Adamscan010.jpg";
-import adamscan028 from "../images/historie/Adamscan028.jpg";
-import adamscan025 from "../images/historie/Adamscan025.jpg";
-import adamscan030 from "../images/historie/Adamscan030.jpg";
-import adamscan029 from "../images/historie/Adamscan029.jpg";
-import adamscan034 from "../images/historie/Adamscan034.jpg";
-import adamscan051 from "../images/historie/Adamscan_051.jpg";
-import adamscan053 from "../images/historie/Adamscan_053.jpg";
-import adamscan012 from "../images/historie/Adamscan012.jpg";
-import adamscan021 from "../images/historie/Adamscan021.jpg";
-import adamscan019 from "../images/historie/Adamscan019.jpg";
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  "../images/historie/*.{jpg,JPG}",
+  { eager: true }
+);
 
-// Generate large versions for lightbox
+// Specific images used in the text
+const personl1929 = getImageByName(
+  allImages,
+  "historie",
+  "personl_rok_1929.jpg"
+);
+const adamscan046 = getImageByName(allImages, "historie", "Adamscan_046.jpg");
+const adamscan007 = getImageByName(allImages, "historie", "Adamscan007.jpg");
+const rok1926 = getImageByName(allImages, "historie", "rok_1926-0.jpg");
+
+// Gallery images - explicit order for historical narrative
+const galleryImageNames = [
+  "Adamscan_046.jpg",
+  "Adamscan007.jpg",
+  "personl_rok_1929.jpg",
+  "rok_1926-0.jpg",
+  "Adamscan_038.jpg",
+  "Adamscan023.jpg",
+  "Adamscan026.jpg",
+  "Adamscan010.jpg",
+  "Adamscan028.jpg",
+  "Adamscan025.jpg",
+  "Adamscan030.jpg",
+  "Adamscan029.jpg",
+  "Adamscan034.jpg",
+  "Adamscan_051.jpg",
+  "Adamscan_053.jpg",
+  "Adamscan012.jpg",
+  "Adamscan021.jpg",
+  "Adamscan019.jpg",
+];
+
+const galleryImages = galleryImageNames
+  .map((name) => getImageByName(allImages, "historie", name))
+  .filter(Boolean);
+
+// Generate large versions
 const personl1929Large = await getImage({
   src: personl1929,
   width: 1200,
@@ -45,97 +67,12 @@ const rok1926Large = await getImage({
   width: 1200,
   format: "webp",
 });
-const adamscan038Large = await getImage({
-  src: adamscan038,
-  width: 1200,
-  format: "webp",
-});
-const adamscan023Large = await getImage({
-  src: adamscan023,
-  width: 1200,
-  format: "webp",
-});
-const adamscan026Large = await getImage({
-  src: adamscan026,
-  width: 1200,
-  format: "webp",
-});
-const adamscan010Large = await getImage({
-  src: adamscan010,
-  width: 1200,
-  format: "webp",
-});
-const adamscan028Large = await getImage({
-  src: adamscan028,
-  width: 1200,
-  format: "webp",
-});
-const adamscan025Large = await getImage({
-  src: adamscan025,
-  width: 1200,
-  format: "webp",
-});
-const adamscan030Large = await getImage({
-  src: adamscan030,
-  width: 1200,
-  format: "webp",
-});
-const adamscan029Large = await getImage({
-  src: adamscan029,
-  width: 1200,
-  format: "webp",
-});
-const adamscan034Large = await getImage({
-  src: adamscan034,
-  width: 1200,
-  format: "webp",
-});
-const adamscan051Large = await getImage({
-  src: adamscan051,
-  width: 1200,
-  format: "webp",
-});
-const adamscan053Large = await getImage({
-  src: adamscan053,
-  width: 1200,
-  format: "webp",
-});
-const adamscan012Large = await getImage({
-  src: adamscan012,
-  width: 1200,
-  format: "webp",
-});
-const adamscan021Large = await getImage({
-  src: adamscan021,
-  width: 1200,
-  format: "webp",
-});
-const adamscan019Large = await getImage({
-  src: adamscan019,
-  width: 1200,
-  format: "webp",
-});
 
-const galleryImages = [
-  { src: adamscan046, large: adamscan046Large },
-  { src: adamscan007, large: adamscan007Large },
-  { src: personl1929, large: personl1929Large },
-  { src: rok1926, large: rok1926Large },
-  { src: adamscan038, large: adamscan038Large },
-  { src: adamscan023, large: adamscan023Large },
-  { src: adamscan026, large: adamscan026Large },
-  { src: adamscan010, large: adamscan010Large },
-  { src: adamscan028, large: adamscan028Large },
-  { src: adamscan025, large: adamscan025Large },
-  { src: adamscan030, large: adamscan030Large },
-  { src: adamscan029, large: adamscan029Large },
-  { src: adamscan034, large: adamscan034Large },
-  { src: adamscan051, large: adamscan051Large },
-  { src: adamscan053, large: adamscan053Large },
-  { src: adamscan012, large: adamscan012Large },
-  { src: adamscan021, large: adamscan021Large },
-  { src: adamscan019, large: adamscan019Large },
-];
+const galleryLarge = await Promise.all(
+  galleryImages.map((img) =>
+    getImage({ src: img, width: 1200, format: "webp" })
+  )
+);
 ---
 
 <Layout
@@ -394,12 +331,12 @@ const galleryImages = [
     {
       galleryImages.map((img, i) => (
         <a
-          href={img.large.src}
+          href={galleryLarge[i].src}
           class="galleryPhoto lightbox"
           data-gallery="gallery"
         >
           <Image
-            src={img.src}
+            src={img}
             alt={`Historická fotografie Pensionu RUT a rodiny Formanů ${i + 1}`}
             width={150}
             height={100}

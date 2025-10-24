@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getImage } from "astro:assets";
 import { ROUTES } from "../config/routes";
+import { getImageByName, getAllImages, excludeImages } from "../utils/images";
 import regataImg from "../images/regata/regata-2015.jpg";
 
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
@@ -10,32 +11,10 @@ const allImages = import.meta.glob<{ default: ImageMetadata }>(
   { eager: true }
 );
 
-const getImageByName = (name: string) => {
-  const path = `../images/regata/${name}`;
-  return allImages[path]?.default;
-};
-
-// Regata galerie
-const regataImages = [
-  "DSC_9409.jpg",
-  "DSC_9443.jpg",
-  "DSC_9469.jpg",
-  "DSC_9474.jpg",
-  "DSC_9405.JPG",
-  "DSC_9401_Vltava.jpg",
-  "DSC_9445.JPG",
-  "DSC_9455.JPG",
-  "DSC_9473.JPG",
-  "DSC_9447.JPG",
-  "DSC_9491.JPG",
-  "DSC_9510.JPG",
-  "DSC_9535.JPG",
-  "DSC_9347.JPG",
-  "DSC_9393.JPG",
-  "DSC_9498.JPG",
-]
-  .map((name) => getImageByName(name))
-  .filter(Boolean);
+// Gallery images - automatically loaded, excluding the main regata-2015.jpg used in content
+const regataImages = excludeImages(getAllImages(allImages), [
+  "regata-2015.jpg",
+]);
 
 const regataLarge = await Promise.all(
   regataImages.map((img) => getImage({ src: img, width: 1200, format: "webp" }))

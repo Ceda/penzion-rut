@@ -3,61 +3,18 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getImage } from "astro:assets";
 import { ROUTES } from "../config/routes";
+import { getImageByName, getAllImages } from "../utils/images";
 
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
   "../images/ubytovani/*.{jpg,JPG}",
   { eager: true }
 );
 
-const getImageByName = (name: string) => {
-  const path = `../images/ubytovani/${name}`;
-  return allImages[path]?.default;
-};
+// Main image - explicitly defined
+const mainImage = getImageByName(allImages, "ubytovani", "I_MG_6411-Edit.jpg");
 
-const mainImage = getImageByName("DSC_6146.JPG");
-
-const ubytovaniImages = [
-  "DSC1421_hdr_a.jpg",
-  "DSC_6136.jpg",
-  "DSC_6152.jpg",
-  "DSC_5041.jpg",
-  "DSC_5037.jpg",
-  "DSC_4757.JPG",
-  "DSC_6146.JPG",
-  "DSC_6151.jpg",
-  "DSC_6449.JPG",
-  "DSC_6450.JPG",
-  "DSC_6148.jpg",
-  "DSC_6139.jpg",
-  "DSC_6458.JPG",
-  "DSC_6460.JPG",
-  "DSC_6470.JPG",
-  "DSC_6473.JPG",
-  "IMG_1858.JPG",
-  "DSC_6471.JPG",
-  "DSC_4746.JPG",
-  "IMG_5861.JPG",
-  "pokoj_f.JPG",
-  "Pokoje_8643.jpg",
-  "Pokoje_8674.jpg",
-  "Pokoje_8675.jpg",
-  "Pokoje_8677.jpg",
-  "pokoj_a.JPG",
-  "Pokoje_8651.jpg",
-  "Pokoje_8673.jpg",
-  "Pokoje_8687.jpg",
-  "Pokoje_8688.jpg",
-  "Pokoje_8690.jpg",
-  "Pokoje_8695.jpg",
-  "Pokoje_8696.jpg",
-  "pokoj_e.jpg",
-  "pokoj_c.JPG",
-  "pokoj_g.JPG",
-  "DSC_4863.JPG",
-  "DSC_5046.JPG",
-]
-  .map((name) => getImageByName(name))
-  .filter(Boolean);
+// Gallery images - automatically loaded from folder
+const ubytovaniImages = getAllImages(allImages);
 
 const mainImageLarge = await getImage({
   src: mainImage,

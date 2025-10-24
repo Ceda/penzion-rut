@@ -3,36 +3,22 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getImage } from "astro:assets";
 import { ROUTES } from "../config/routes";
+import { getImageByName, getAllImages } from "../utils/images";
 
-// Import obrázků
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
   "../images/okoli/*.{jpg,JPG}",
   { eager: true }
 );
 
-const getImageByName = (name: string) => {
-  const path = `../images/okoli/${name}`;
-  return allImages[path]?.default;
-};
+// Main image
+const bezdez = getImageByName(
+  allImages,
+  "okoli",
+  "A079129DE99F1CADB1F8B9F3CA8E2F9A.jpg"
+);
 
-// Obrázky pro stránku
-const bezdez = getImageByName("bezdez-0.jpg");
-
-// Galerie okolí
-const okoliImages = [
-  "bezdez-0.jpg",
-  "jezero-0.jpg",
-  "parnik_Hynek-0.jpg",
-  "plaz-0.jpg",
-  "DSC_4982.jpg",
-  "okoli-0.jpg",
-  "DSC_5030.jpg",
-  "DSC_4804.jpg",
-  "pohled_z_okna-0.jpg",
-  "DSC_4809.jpg",
-]
-  .map((name) => getImageByName(name))
-  .filter(Boolean);
+// Gallery images - automatically loaded
+const okoliImages = getAllImages(allImages);
 
 const bezdezLarge = await getImage({
   src: bezdez,
