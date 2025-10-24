@@ -1,18 +1,21 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import Nav from "../components/Nav.astro";
+import Weather from "../components/Weather.astro";
 import { ROUTES } from "../config/routes";
 
 interface Props {
   title?: string;
   description?: string;
   keywords?: string;
+  showSidebar?: boolean;
 }
 
 const {
   title = "Máchovo jezero ubytování - Pension RUT, Máchovo jezero",
   description = "Pension se nachází v lázeňském městečku Staré Splavy, které jsou známé ozdravným vzduchem. Jedinečnost objektu je mimo jiné dána jeho romantickým umístěním nad Máchovým jezerem.",
   keywords = "Ubytování Máchovo jezero, dovolená, Staré Splavy",
+  showSidebar = false,
 } = Astro.props;
 ---
 
@@ -316,52 +319,23 @@ const {
     <div id="body">
       <div class="container">
         <div class="row-fluid">
-          <div class="span8">
+          <div class={showSidebar ? "span8" : "span12"}>
             <slot />
           </div>
 
-          <!-- Aktuality
-        ============================== -->
-          <div class="span4">
-            <h3>Aktuality<small> od Máchova jezera</small></h3>
-            <div style="height: 2px"></div>
-            <behold-widget feed-id="CvncMIYMk2n1PeSj4r20"></behold-widget>
-            <div style="height: 5px"></div>
-            <h3>Máchovo jezero <small>počasí</small></h3>
-            <div class="weather_info">
-              <p class="weather-col">
-                <img
-                  title="déšť"
-                  alt="Ikona počasí - déšť"
-                  src="https://openweathermap.org/img/wn/10d@2x.png"
-                /><span class="date"
-                  ><strong>čtvrtek</strong> <strong>23 říj</strong>
-                </span><span class="info"
-                  ><span>Min:&nbsp;8°C</span> <span>Max:&nbsp;16°C</span></span
-                >
-              </p><p class="weather-col">
-                <img
-                  title="slabý déšť"
-                  alt="Ikona počasí - slabý déšť"
-                  src="https://openweathermap.org/img/wn/10d@2x.png"
-                /><span class="date"
-                  ><strong>pátek</strong> <strong>24 říj</strong>
-                </span><span class="info"
-                  ><span>Min:&nbsp;5°C</span> <span>Max:&nbsp;9°C</span></span
-                >
-              </p><p class="weather-col">
-                <img
-                  title="slabý déšť"
-                  alt="Ikona počasí - slabý déšť"
-                  src="https://openweathermap.org/img/wn/10d@2x.png"
-                /><span class="date"
-                  ><strong>sobota</strong> <strong>25 říj</strong>
-                </span><span class="info"
-                  ><span>Min:&nbsp;5°C</span> <span>Max:&nbsp;8°C</span></span
-                >
-              </p>
-            </div>
-          </div>
+          {
+            showSidebar && (
+              <div class="span4">
+                <h3>
+                  Aktuality<small> od Máchova jezera</small>
+                </h3>
+                <div style="height: 2px" />
+                <behold-widget feed-id="CvncMIYMk2n1PeSj4r20" />
+                <div style="height: 5px" />
+                <Weather />
+              </div>
+            )
+          }
         </div>
       </div>
     </div>
@@ -443,7 +417,25 @@ const {
 
         // Reinicializace lightbox galerie
         if (typeof $ !== "undefined" && $.fn.nivoLightbox) {
-          $("a.lightbox").nivoLightbox();
+          // Force all .lightbox links to be treated as images
+          $("a.lightbox").each(function () {
+            const href = $(this).attr("href");
+            if (
+              href &&
+              (href.includes(".webp") ||
+                href.includes(".jpg") ||
+                href.includes(".png"))
+            ) {
+              $(this).attr("data-lightbox-type", "image");
+            }
+          });
+
+          $("a.lightbox").nivoLightbox({
+            effect: "fade",
+            keyboardNav: true,
+            clickOverlayToClose: true,
+            errorMessage: "Obrázek se nepodařilo načíst.",
+          });
         }
       });
     </script>
