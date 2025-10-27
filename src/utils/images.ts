@@ -38,7 +38,9 @@ export const excludeImages = (
   excludeNames: string[]
 ) => {
   return images.filter((img) => {
-    const filename = img.src.split("/").pop() || "";
-    return !excludeNames.includes(filename);
+    // Extract filename, removing query params if present
+    const srcPath = img.src.split("?")[0];
+    const filename = srcPath.split("/").pop() || "";
+    return !excludeNames.some((excludeName) => filename.includes(excludeName));
   });
 };

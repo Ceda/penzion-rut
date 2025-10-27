@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getImage } from "astro:assets";
 import { ROUTES } from "../config/routes";
-import { getImageByName, getAllImages } from "../utils/images";
+import { getImageByName, getAllImages, excludeImages } from "../utils/images";
 
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
   "../images/ubytovani/*.{jpg,JPG}",
@@ -13,8 +13,10 @@ const allImages = import.meta.glob<{ default: ImageMetadata }>(
 // Main image - explicitly defined
 const mainImage = getImageByName(allImages, "ubytovani", "I_MG_6411-Edit.jpg");
 
-// Gallery images - automatically loaded from folder
-const ubytovaniImages = getAllImages(allImages);
+// Gallery images - automatically loaded from folder, excluding main image
+const ubytovaniImages = excludeImages(getAllImages(allImages), [
+  "I_MG_6411-Edit.jpg",
+]);
 
 const mainImageLarge = await getImage({
   src: mainImage,

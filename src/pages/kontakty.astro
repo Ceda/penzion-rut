@@ -38,39 +38,11 @@ import { ROUTES } from "../config/routes";
 
   <h2>Pension RUT kontaktní informace</h2>
 
-  <!-- Leaflet CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
-  />
-  <!-- Leaflet JS -->
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""></script>
-
   <div class="mapcliping">
     <div id="map3" style="width:100%; height:320px"></div>
   </div>
 
-  <script is:inline>
-    document.addEventListener("DOMContentLoaded", function () {
-      var map = L.map("map3", {
-        scrollWheelZoom: false,
-      }).setView([50.58707513286003, 14.638432025909424], 14);
-
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(map);
-
-      L.marker([50.58707513286003, 14.638432025909424])
-        .addTo(map)
-        .bindPopup("<b>Pension RUT</b><br>Lázeňský Vrch 97<br>Staré Splavy");
-    });
-  </script>
+  <script is:inline src="/src/scripts/map.js"></script>
 
   <div class="contents">
     <div class="row-fluid">
@@ -121,11 +93,9 @@ import { ROUTES } from "../config/routes";
   </div>
 
   <script
-    src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"
-  ></script>
-  <script
     src="https://www.google.com/recaptcha/api.js?render=6LcQvLkkAAAAAGpaAsyC8pbql0ji3UkAr73gFSDS"
-  ></script>
+    async
+    defer></script>
 
   <div id="form-1">
     <form
@@ -178,7 +148,6 @@ import { ROUTES } from "../config/routes";
             rows="6"
             id="FormVaseZprava3"></textarea>
         </div>
-        <script type="text/javascript" src="/js/form.js"></script>
       </fieldset>
       <input
         type="hidden"
@@ -190,24 +159,4 @@ import { ROUTES } from "../config/routes";
       </div>
     </form>
   </div>
-
-  <script type="text/javascript">
-    $(document).ready(function () {});
-  </script>
-  <script is:inline>
-    if (typeof grecaptcha !== "undefined") {
-      grecaptcha.ready(function () {
-        grecaptcha
-          .execute("6LcQvLkkAAAAAGpaAsyC8pbql0ji3UkAr73gFSDS", {
-            action: "submit",
-          })
-          .then(function (token) {
-            const element = document.getElementById("g-recaptcha-response");
-            if (element) {
-              element.value = token;
-            }
-          });
-      });
-    }
-  </script>
 </Layout>

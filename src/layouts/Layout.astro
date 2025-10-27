@@ -1,8 +1,17 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import { Image } from "astro:assets";
 import Nav from "../components/Nav.astro";
 import Weather from "../components/Weather.astro";
 import { ROUTES } from "../config/routes";
+
+// Slider images
+import terasaImg from "../images/slider/terasa.jpg";
+import rok1926Img from "../images/slider/rok 1926.jpg";
+import pokoj14Img from "../images/slider/pokoj 14.jpg";
+import okoliImg from "../images/slider/okoli.jpg";
+import rutClassicImg from "../images/slider/rut-classic.jpg";
+import bezdezImg from "../images/slider/bezdez.jpg";
 
 interface Props {
   title?: string;
@@ -225,12 +234,13 @@ const {
               >
               <div class="bg"></div>
             </div>
-            <a href={ROUTES.home}
-              ><img
-                src="/theme/pensionrut/img/galerie/terasa.jpg"
+            <a href={ROUTES.home}>
+              <Image
+                src={terasaImg}
                 alt="Terasa Pensionu RUT s výhledem na Máchovo jezero"
-              /></a
-            >
+                loading="eager"
+              />
+            </a>
           </div>
           <div class="item">
             <div class="caption">
@@ -241,12 +251,13 @@ const {
               >
               <div class="bg"></div>
             </div>
-            <a href={ROUTES.historie}
-              ><img
-                src="/theme/pensionrut/img/galerie/rok 1926.jpg"
+            <a href={ROUTES.historie}>
+              <Image
+                src={rok1926Img}
                 alt="Historická fotografie Pensionu RUT z roku 1926"
-              /></a
-            >
+                loading="lazy"
+              />
+            </a>
           </div>
           <div class="item">
             <div class="caption">
@@ -257,12 +268,13 @@ const {
               >
               <div class="bg"></div>
             </div>
-            <a href={ROUTES.ubytovani}
-              ><img
-                src="/theme/pensionrut/img/galerie/pokoj 14.jpg"
+            <a href={ROUTES.ubytovani}>
+              <Image
+                src={pokoj14Img}
                 alt="Pokoj č. 14 v Pensionu RUT s výhledem na jezero"
-              /></a
-            >
+                loading="lazy"
+              />
+            </a>
           </div>
           <div class="item">
             <div class="caption">
@@ -273,12 +285,13 @@ const {
               >
               <div class="bg"></div>
             </div>
-            <a href={ROUTES.okoli}
-              ><img
-                src="/theme/pensionrut/img/galerie/okoli.jpg"
+            <a href={ROUTES.okoli}>
+              <Image
+                src={okoliImg}
                 alt="Okolí Pensionu RUT - krásná příroda u Máchova jezera"
-              /></a
-            >
+                loading="lazy"
+              />
+            </a>
           </div>
           <div class="item">
             <div class="caption">
@@ -289,12 +302,13 @@ const {
               >
               <div class="bg"></div>
             </div>
-            <a href={ROUTES.regata}
-              ><img
-                src="/theme/pensionrut/img/galerie/rut-classic.jpg"
+            <a href={ROUTES.regata}>
+              <Image
+                src={rutClassicImg}
                 alt="Regata RUT Classic - závod klasických plachetnic na Máchově jezeře"
-              /></a
-            >
+                loading="lazy"
+              />
+            </a>
           </div>
           <div class="item">
             <div class="caption">
@@ -305,12 +319,13 @@ const {
               >
               <div class="bg"></div>
             </div>
-            <a href={ROUTES.vylety}
-              ><img
-                src="/theme/pensionrut/img/galerie/bezdez.jpg"
+            <a href={ROUTES.vylety}>
+              <Image
+                src={bezdezImg}
                 alt="Hrad Bezděz - výlet z Pensionu RUT"
-              /></a
-            >
+                loading="lazy"
+              />
+            </a>
           </div>
         </div>
       </div>
