@@ -1,5 +1,3 @@
-let mapInstance = null;
-
 const loadLeaflet = () => {
   return new Promise((resolve) => {
     // Pokud už je Leaflet načtený
@@ -37,26 +35,38 @@ const initMap = async () => {
   // Počkej na Leaflet
   await loadLeaflet();
 
-  // Zničit starou mapu pokud existuje
-  if (mapInstance) {
-    mapInstance.remove();
-    mapInstance = null;
+  // Zničit starou mapu pokud existuje (uloženo v globálním objektu)
+  if (window.__mapInstance) {
+    window.__mapInstance.remove();
+    window.__mapInstance = null;
   }
 
+  // Vyčisti inner HTML elementu pro jistotu
+  mapEl.innerHTML = "";
+  mapEl._leaflet_id = null;
+
   // Vytvoř novou mapu
-  mapInstance = L.map("map3", {
+  window.__mapInstance = L.map("map3", {
     scrollWheelZoom: false,
   }).setView([50.58707513286003, 14.638432025909424], 14);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }).addTo(mapInstance);
+  }).addTo(window.__mapInstance);
 
   L.marker([50.58707513286003, 14.638432025909424])
-    .addTo(mapInstance)
+    .addTo(window.__mapInstance)
     .bindPopup("<b>Pension RUT</b><br>Lázeňský Vrch 97<br>Staré Splavy");
 };
+
+// Cleanup při opuštění stránky
+document.addEventListener("astro:before-preparation", () => {
+  if (window.__mapInstance) {
+    window.__mapInstance.remove();
+    window.__mapInstance = null;
+  }
+});
 
 // Inicializuj při načtení stránky přes router
 document.addEventListener("astro:page-load", initMap);
