@@ -42,7 +42,77 @@ import { ROUTES } from "../config/routes";
     <div id="map3" style="width:100%; height:320px"></div>
   </div>
 
-  <script src="../scripts/map.js"></script>
+  <script is:inline>
+    const loadLeaflet = () => {
+      return new Promise((resolve) => {
+        if (typeof L !== "undefined") {
+          resolve();
+          return;
+        }
+
+        if (!document.querySelector('link[href*="leaflet.css"]')) {
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+          link.integrity =
+            "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=";
+          link.crossOrigin = "";
+          document.head.appendChild(link);
+        }
+
+        const script = document.createElement("script");
+        script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+        script.integrity =
+          "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=";
+        script.crossOrigin = "";
+        script.onload = () => resolve();
+        document.head.appendChild(script);
+      });
+    };
+
+    const initKontaktyMap = async () => {
+      const mapEl = document.getElementById("map3");
+      if (!mapEl) return;
+
+      await loadLeaflet();
+
+      if (window.__kontaktyMapInstance) {
+        try {
+          window.__kontaktyMapInstance.remove();
+        } catch (e) {}
+        window.__kontaktyMapInstance = null;
+      }
+
+      mapEl.innerHTML = "";
+      if (mapEl._leaflet_id) {
+        delete mapEl._leaflet_id;
+      }
+
+      window.__kontaktyMapInstance = L.map("map3", {
+        scrollWheelZoom: false,
+      }).setView([50.58707513286003, 14.638432025909424], 14);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(window.__kontaktyMapInstance);
+
+      L.marker([50.58707513286003, 14.638432025909424])
+        .addTo(window.__kontaktyMapInstance)
+        .bindPopup("<b>Pension RUT</b><br>Lázeňský Vrch 97<br>Staré Splavy");
+    };
+
+    document.addEventListener("astro:page-load", initKontaktyMap);
+
+    document.addEventListener("astro:before-preparation", () => {
+      if (window.__kontaktyMapInstance) {
+        try {
+          window.__kontaktyMapInstance.remove();
+        } catch (e) {}
+        window.__kontaktyMapInstance = null;
+      }
+    });
+  </script>
 
   <div class="contents">
     <div class="row-fluid">
