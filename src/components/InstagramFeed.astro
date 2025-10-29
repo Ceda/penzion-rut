@@ -47,7 +47,19 @@
             target="_blank"
             rel="noopener noreferrer"
             class="instagram-item"
-            style="background-image: url('${post.sizes.large.mediaUrl}')"
+            style="
+              position: relative;
+              display: block;
+              overflow: hidden;
+              border-radius: 4px;
+              transition: transform 0.2s ease;
+              width: 100%;
+              padding-bottom: 100%;
+              background-image: url('${post.sizes.large.mediaUrl}');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+            "
             aria-label="${post.prunedCaption || "Instagram příspěvek"}"
           ></a>
         `
@@ -80,18 +92,6 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
-  }
-
-  .instagram-item {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    border-radius: 4px;
-    transition: transform 0.2s ease;
-    aspect-ratio: 1;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
   }
 
   .instagram-item:hover {
