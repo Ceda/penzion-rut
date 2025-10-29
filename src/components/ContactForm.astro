@@ -1,0 +1,297 @@
+---
+// ContactForm - dynamický formulář s bezpečnostními funkcemi
+// Používá nonce token, honeypot, rate limiting
+---
+
+<div id="form-1">
+  <form
+    id="FormSendformForm"
+    method="post"
+    accept-charset="utf-8"
+    data-submitting="false"
+  >
+    <div style="display:none;">
+      <input type="hidden" name="_method" value="POST" />
+    </div>
+    <fieldset>
+      <legend>Kontaktní formulář</legend>
+
+      <!-- Honeypot field - musí zůstat prázdný -->
+      <input
+        type="text"
+        name="website"
+        id="website"
+        autocomplete="off"
+        tabindex="-1"
+        style="position: absolute; left: -9999px;"
+        aria-hidden="true"
+      />
+
+      <!-- Nonce token -->
+      <input type="hidden" name="token" id="form-token" />
+
+      <div class="input text">
+        <label for="FormJmenoAPrijmeni1">Jméno a příjmení:</label>
+        <input
+          name="name"
+          type="text"
+          placeholder="Jméno a příjmení"
+          required
+          minlength="2"
+          maxlength="100"
+          id="FormJmenoAPrijmeni1"
+        />
+      </div>
+      <div class="input text">
+        <label for="FormMailfrom">E-mail:</label>
+        <input
+          name="email"
+          type="email"
+          placeholder="E-mail"
+          required
+          maxlength="255"
+          id="FormMailfrom"
+        />
+      </div>
+      <div class="input text">
+        <label for="FormTelefoniCislo20">Telefonní číslo:</label>
+        <input
+          name="phone"
+          type="tel"
+          placeholder="Telefonní číslo"
+          maxlength="20"
+          pattern="[0-9\s\+\-\(\)]+"
+          id="FormTelefoniCislo20"
+        />
+      </div>
+      <div class="input textarea">
+        <label for="FormVaseZprava3">Vaše zpráva:</label>
+        <textarea
+          name="message"
+          cols="30"
+          rows="6"
+          required
+          minlength="10"
+          maxlength="2000"
+          id="FormVaseZprava3"></textarea>
+      </div>
+    </fieldset>
+
+    <div
+      id="form-message"
+      role="alert"
+      aria-live="polite"
+      aria-atomic="true"
+      style="display: none; margin: 10px 0; padding: 10px; border-radius: 4px;"
+    >
+    </div>
+
+    <div class="submit">
+      <input
+        class="btn btn-large"
+        type="submit"
+        value="Odeslat"
+        id="submit-btn"
+      />
+    </div>
+  </form>
+</div>
+
+<script>
+  (function () {
+    const form = document.getElementById("FormSendformForm") as HTMLFormElement;
+    const tokenInput = document.getElementById(
+      "form-token"
+    ) as HTMLInputElement;
+    const submitBtn = document.getElementById("submit-btn") as HTMLInputElement;
+    const messageDiv = document.getElementById(
+      "form-message"
+    ) as HTMLDivElement;
+    let token: string | null = null;
+
+    // Získat nonce token při načtení stránky
+    async function fetchToken() {
+      try {
+        const res = await fetch("/api/nonce");
+        if (!res.ok) throw new Error("Failed to fetch token");
+        const data = await res.json();
+        token = data.token;
+        if (tokenInput && token) tokenInput.value = token;
+      } catch (e) {
+        console.error("Token fetch error:", e);
+        showMessage(
+          "Chyba při inicializaci formuláře. Obnovte stránku.",
+          "error"
+        );
+      }
+    }
+
+    function showMessage(text: string, type: "success" | "error" = "success") {
+      if (!messageDiv) return;
+      messageDiv.textContent = text;
+      messageDiv.style.display = "block";
+      messageDiv.style.backgroundColor = type === "error" ? "#fee" : "#efe";
+      messageDiv.style.color = type === "error" ? "#c00" : "#0a0";
+      messageDiv.style.border = `1px solid ${type === "error" ? "#fcc" : "#cfc"}`;
+      messageDiv.setAttribute("role", "alert");
+
+      // Scroll to message if error
+      if (type === "error") {
+        messageDiv.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    }
+
+    function hideMessage() {
+      if (messageDiv) messageDiv.style.display = "none";
+    }
+
+    function validateEmail(email: string): boolean {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+
+    function validateForm(): string | null {
+      const name = (
+        form.querySelector('[name="name"]') as HTMLInputElement
+      )?.value?.trim();
+      const email = (
+        form.querySelector('[name="email"]') as HTMLInputElement
+      )?.value?.trim();
+      const message = (
+        form.querySelector('[name="message"]') as HTMLTextAreaElement
+      )?.value?.trim();
+
+      if (!name || name.length < 2) {
+        return "Jméno musí mít alespoň 2 znaky.";
+      }
+      if (name.length > 100) {
+        return "Jméno je příliš dlouhé.";
+      }
+      if (!email || !validateEmail(email)) {
+        return "Zadejte platnou e-mailovou adresu.";
+      }
+      if (email.length > 255) {
+        return "E-mailová adresa je příliš dlouhá.";
+      }
+      if (!message || message.length < 10) {
+        return "Zpráva musí mít alespoň 10 znaků.";
+      }
+      if (message.length > 2000) {
+        return "Zpráva je příliš dlouhá (max. 2000 znaků).";
+      }
+      return null;
+    }
+
+    async function handleSubmit(e: Event) {
+      e.preventDefault();
+
+      if (form.dataset.submitting === "true") return;
+
+      // Client-side validace
+      const validationError = validateForm();
+      if (validationError) {
+        showMessage(validationError, "error");
+        return;
+      }
+
+      const formData = new FormData(form);
+      const honeypot = (
+        document.getElementById("website") as HTMLInputElement
+      )?.value?.trim();
+
+      if (honeypot) {
+        showMessage("Bot detected", "error");
+        return;
+      }
+
+      if (!token) {
+        showMessage("Token není k dispozici. Načítám nový...", "error");
+        await fetchToken();
+        if (!token) {
+          showMessage("Token není k dispozici. Obnovte stránku.", "error");
+          return;
+        }
+      }
+
+      hideMessage();
+      form.dataset.submitting = "true";
+      submitBtn.disabled = true;
+      submitBtn.value = "Odesílám...";
+
+      const name = (formData.get("name") as string)?.trim();
+      const email = (formData.get("email") as string)?.trim();
+      const phone = (formData.get("phone") as string)?.trim() || "";
+      const message = (formData.get("message") as string)?.trim();
+
+      try {
+        const res = await fetch("/api/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            email,
+            phone,
+            message,
+            website: honeypot || "",
+            token,
+          }),
+        });
+
+        let data: any;
+        try {
+          data = await res.json();
+        } catch (e) {
+          throw new Error("Neplatná odpověď ze serveru.");
+        }
+
+        if (!res.ok) {
+          if (res.status === 429) {
+            showMessage(
+              "Příliš mnoho žádostí. Zkuste to prosím později.",
+              "error"
+            );
+          } else if (res.status === 400 && data.error?.includes("token")) {
+            showMessage(
+              "Token vypršel. Obnovte stránku a zkuste to znovu.",
+              "error"
+            );
+            await fetchToken(); // Získat nový token
+          } else {
+            showMessage(
+              data.error || "Chyba při odesílání. Zkuste to prosím později.",
+              "error"
+            );
+          }
+        } else {
+          showMessage("Zpráva byla úspěšně odeslána. Děkujeme!", "success");
+          form.reset();
+          await fetchToken(); // Získat nový token pro další odeslání
+          // Reset honeypot after form reset
+          const honeypotInput = document.getElementById(
+            "website"
+          ) as HTMLInputElement;
+          if (honeypotInput) honeypotInput.value = "";
+        }
+      } catch (e) {
+        console.error("Submit error:", e);
+        showMessage("Chyba při odesílání. Zkuste to prosím později.", "error");
+      } finally {
+        form.dataset.submitting = "false";
+        submitBtn.disabled = false;
+        submitBtn.value = "Odeslat";
+      }
+    }
+
+    // Init
+    if (form) {
+      form.addEventListener("submit", handleSubmit);
+      fetchToken();
+    }
+
+    // Re-fetch token při Astro transitions
+    document.addEventListener("astro:page-load", () => {
+      fetchToken();
+      hideMessage();
+    });
+  })();
+</script>

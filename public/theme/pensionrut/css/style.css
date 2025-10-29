@@ -510,3 +510,25 @@ body footer .container a {
 .goverlay {
   background: rgba(0, 0, 0, 0.75) !important;
 }
+/* Remove body padding on mobile devices
+---------------------------------------- */
+@media (max-width: 767px) {
+  body {
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+  .navbar-fixed-top,
+  .navbar-fixed-bottom,
+  .navbar-static-top {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  #body .container {
+    padding: 5px !important;
+  }
+  #body .container div.row-fluid [class*="span"] {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+}

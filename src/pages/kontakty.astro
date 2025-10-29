@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { ROUTES } from "../config/routes";
+import ContactForm from "../components/ContactForm.astro";
 ---
 
 <Layout
@@ -148,71 +149,5 @@ import { ROUTES } from "../config/routes";
     </div>
   </div>
 
-  <script
-    src="https://www.google.com/recaptcha/api.js?render=6LcQvLkkAAAAAGpaAsyC8pbql0ji3UkAr73gFSDS"
-    async
-    defer></script>
-
-  <div id="form-1">
-    <form
-      action="/form/forms/sendform"
-      class="ajax-form"
-      data-action="/form/forms/send/1"
-      id="FormSendformForm"
-      method="post"
-      accept-charset="utf-8"
-    >
-      <div style="display:none;">
-        <input type="hidden" name="_method" value="POST" />
-      </div>
-      <fieldset>
-        <legend>Kontaktní formulář</legend>
-        <div class="input text">
-          <label for="FormJmenoAPrijmeni1">Jméno a příjmení:</label>
-          <input
-            name="data[Form][Jmeno_a_prijmeni1]"
-            type="text"
-            placeholder="Jméno a příjmení"
-            required="1"
-            id="FormJmenoAPrijmeni1"
-          />
-        </div>
-        <div class="input text">
-          <label for="FormMailfrom">E-mail:</label>
-          <input
-            name="data[Form][mailfrom]"
-            type="text"
-            placeholder="E-mail"
-            required="1"
-            id="FormMailfrom"
-          />
-        </div>
-        <div class="input text">
-          <label for="FormTelefoniCislo20">Telefoní číslo:</label>
-          <input
-            name="data[Form][Telefoni_cislo20]"
-            type="text"
-            placeholder="Telefoní číslo"
-            id="FormTelefoniCislo20"
-          />
-        </div>
-        <div class="input textarea">
-          <label for="FormVaseZprava3">Vaše zpráva:</label>
-          <textarea
-            name="data[Form][Vase_zprava3]"
-            cols="30"
-            rows="6"
-            id="FormVaseZprava3"></textarea>
-        </div>
-      </fieldset>
-      <input
-        type="hidden"
-        name="data[Form][g-recaptcha-response]"
-        id="g-recaptcha-response"
-      />
-      <div class="submit">
-        <input class="btn btn-large" type="submit" value="Odeslat" />
-      </div>
-    </form>
-  </div>
+  <ContactForm />
 </Layout>
