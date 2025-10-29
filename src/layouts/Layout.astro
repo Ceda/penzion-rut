@@ -3,6 +3,7 @@ import { ClientRouter } from "astro:transitions";
 import { Image } from "astro:assets";
 import Nav from "../components/Nav.astro";
 import Weather from "../components/Weather.astro";
+import InstagramFeed from "../components/InstagramFeed.astro";
 import { ROUTES } from "../config/routes";
 
 // Slider images
@@ -347,7 +348,7 @@ const {
                   Aktuality<small> od Máchova jezera</small>
                 </h3>
                 <div style="height: 2px" />
-                <behold-widget feed-id="gfHbECjUaFHjz0idR6y7" />
+                <InstagramFeed />
                 <div style="height: 5px" />
                 <Weather />
               </div>
@@ -378,15 +379,6 @@ const {
       </div>
     </footer>
 
-    <script>
-      if ("noModule" in HTMLScriptElement.prototype) {
-        const d = document,
-          s = d.createElement("script");
-        s.type = "module";
-        s.src = "https://w.behold.so/widget.js";
-        d.body.appendChild(s);
-      }
-    </script>
     <script is:inline>
       // Načtení GLightbox dynamicky
       const loadGLightbox = () => {
