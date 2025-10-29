@@ -47,13 +47,9 @@
             target="_blank"
             rel="noopener noreferrer"
             class="instagram-item"
-          >
-            <img
-              src="${post.sizes.large.mediaUrl}"
-              alt="${post.prunedCaption || "Instagram příspěvek"}"
-              loading="lazy"
-            />
-          </a>
+            style="background-image: url('${post.sizes.large.mediaUrl}')"
+            aria-label="${post.prunedCaption || "Instagram příspěvek"}"
+          ></a>
         `
         )
         .join("");
@@ -93,17 +89,13 @@
     border-radius: 4px;
     transition: transform 0.2s ease;
     aspect-ratio: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .instagram-item:hover {
     transform: scale(1.05);
-  }
-
-  .instagram-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
   }
 
   @media (max-width: 768px) {
