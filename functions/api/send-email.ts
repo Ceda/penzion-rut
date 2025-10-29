@@ -112,13 +112,14 @@ IP: ${ip}
     `.trim();
 
     // 7) Poslat do SendGrid
+    // SendGrid vyžaduje: text/plain první, pak text/html
     const payload: any = {
       personalizations: [{ to: [{ email: to }] }],
       from: { email: ctx.env.SENDGRID_FROM },
       subject,
       content: [
-        { type: 'text/html', value: html },
-        { type: 'text/plain', value: text }
+        { type: 'text/plain', value: text },
+        { type: 'text/html', value: html }
       ],
     };
 
