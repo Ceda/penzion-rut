@@ -6,7 +6,8 @@ Instagram feed z Behold.so je nyní cachlovaný pomocí Cloudflare Cache API.
 
 - **Cache doba**: 24 hodin (86400 sekund)
 - **Žádná databáze**: Využívá built-in Cloudflare edge cache
-- **Homepage je SSR**: Jen homepage (`/`) je renderovaná na serveru, zbytek je statický
+- **Statický site**: Všechny stránky jsou předgenerované HTML
+- **API jako Function**: `/api/instagram.json` běží jako Cloudflare Pages Function
 
 ## Deployment na Cloudflare Pages
 
