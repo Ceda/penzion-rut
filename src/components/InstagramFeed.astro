@@ -1,62 +1,79 @@
 ---
-import { cachedFetch } from "../utils/cached-fetch";
-
-const BEHOLD_URL = "https://feeds.behold.so/DjdBpJzYGtk9JQjmybl6";
-
-interface InstagramPost {
-  id: string;
-  permalink: string;
-  mediaUrl: string;
-  caption?: string;
-  prunedCaption?: string;
-  sizes: {
-    small: { mediaUrl: string };
-    medium: { mediaUrl: string };
-    large: { mediaUrl: string };
-  };
-}
-
-let instagramPosts: InstagramPost[] = [];
-let error = false;
-
-try {
-  const response = await cachedFetch(BEHOLD_URL, 86400); // 24 hours cache
-  const data = (await response.json()) as { posts?: InstagramPost[] };
-  instagramPosts = (data.posts || []).slice(0, 6); // Show max 6 posts
-} catch (err) {
-  console.error("Failed to fetch Instagram feed:", err);
-  error = true;
-}
+// Client-side component, no server-side fetching
 ---
 
 <div class="instagram-feed">
-  {
-    error ? (
-      <p style="color: #999; font-style: italic;">
-        Instagram feed není momentálně k dispozici
-      </p>
-    ) : instagramPosts.length === 0 ? (
-      <p style="color: #999; font-style: italic;">Načítání příspěvků...</p>
-    ) : (
-      <div class="instagram-grid">
-        {instagramPosts.map((post) => (
+  <div class="instagram-grid" id="instagram-grid">
+    <p style="color: #999; font-style: italic;">Načítání příspěvků...</p>
+  </div>
+</div>
+
+<script>
+  interface InstagramPost {
+    id: string;
+    permalink: string;
+    mediaUrl: string;
+    caption?: string;
+    prunedCaption?: string;
+    sizes: {
+      small: { mediaUrl: string };
+      medium: { mediaUrl: string };
+      large: { mediaUrl: string };
+    };
+  }
+
+  async function loadInstagramFeed() {
+    const grid = document.getElementById("instagram-grid");
+    if (!grid) return;
+
+    try {
+      const response = await fetch("/api/instagram.json");
+      if (!response.ok) throw new Error("Failed to fetch");
+
+      const data = (await response.json()) as { posts?: InstagramPost[] };
+      const posts = (data.posts || []).slice(0, 6);
+
+      if (posts.length === 0) {
+        grid.innerHTML =
+          '<p style="color: #999; font-style: italic;">Žádné příspěvky k zobrazení</p>';
+        return;
+      }
+
+      grid.innerHTML = posts
+        .map(
+          (post) => `
           <a
-            href={post.permalink}
+            href="${post.permalink}"
             target="_blank"
             rel="noopener noreferrer"
             class="instagram-item"
           >
             <img
-              src={post.sizes.large.mediaUrl}
-              alt={post.prunedCaption || "Instagram příspěvek"}
+              src="${post.sizes.large.mediaUrl}"
+              alt="${post.prunedCaption || "Instagram příspěvek"}"
               loading="lazy"
             />
           </a>
-        ))}
-      </div>
-    )
+        `
+        )
+        .join("");
+    } catch (error) {
+      console.error("Failed to load Instagram feed:", error);
+      grid.innerHTML =
+        '<p style="color: #999; font-style: italic;">Instagram feed není momentálně k dispozici</p>';
+    }
   }
-</div>
+
+  // Load on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadInstagramFeed);
+  } else {
+    loadInstagramFeed();
+  }
+
+  // Reload on page navigation (Astro transitions)
+  document.addEventListener("astro:page-load", loadInstagramFeed);
+</script>
 
 <style>
   .instagram-feed {
