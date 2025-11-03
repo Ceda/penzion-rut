@@ -40,8 +40,10 @@
       }
 
       grid.innerHTML = posts
-        .map(
-          (post) => `
+        .map((post) => {
+          const imageUrl = `/api/image-proxy?url=${encodeURIComponent(post.mediaUrl)}&width=300&quality=75`;
+
+          return `
           <a
             href="${post.permalink}"
             target="_blank"
@@ -55,15 +57,15 @@
               transition: transform 0.2s ease;
               width: 100%;
               padding-bottom: 100%;
-              background-image: url('${post.mediaUrl}');
+              background-image: url('${imageUrl}');
               background-size: cover;
               background-position: center;
               background-repeat: no-repeat;
             "
             aria-label="${post.prunedCaption || "Instagram příspěvek"}"
           ></a>
-        `
-        )
+        `;
+        })
         .join("");
     } catch (error) {
       console.error("Failed to load Instagram feed:", error);

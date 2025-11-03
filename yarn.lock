@@ -3479,6 +3479,7 @@ __metadata:
     less: "npm:^4.4.2"
     prettier: "npm:^3.6.2"
     prettier-plugin-astro: "npm:^0.14.1"
+    sharp: "npm:^0.34.4"
     terser: "npm:^5.44.0"
   languageName: unknown
   linkType: soft
@@ -3940,7 +3941,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sharp@npm:^0.34.0":
+"sharp@npm:^0.34.0, sharp@npm:^0.34.4":
   version: 0.34.4
   resolution: "sharp@npm:0.34.4"
   dependencies:
