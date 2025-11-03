@@ -21,7 +21,7 @@ export const onRequestPost = async (ctx: {
     const { name, email, phone, message, website, token } = body as any;
 
     // Email recipient - hardcoded na backendu pro bezpečnost
-    const to = 'gin_adam@seznam.cz';
+    const to = 'recepce@pensionrut.cz';
 
     // 1) Honeypot - musí být prázdné (skryté pole "website")
     if (website) return new Response(JSON.stringify({ error: 'Bot detected (honeypot)' }), { status: 400 });
