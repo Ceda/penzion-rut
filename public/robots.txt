@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.pensionrut.cz/sitemap.xml
+
+# Disallow API endpoints (not useful for SEO)
+Disallow: /api/
